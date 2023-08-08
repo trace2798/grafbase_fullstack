@@ -1,0 +1,1 @@
+npx grafbase@0.24 dev
