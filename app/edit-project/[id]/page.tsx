@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import Modal from "@/components/Modal";
-import ProjectForm from "@/components/ProjectForm";
+import ProjectForm from "@/components/post-form";
 import { getCurrentUser } from "@/lib/session";
 import { getPostDetails } from "@/lib/actions";
 import { PostInterface } from "@/common.types";

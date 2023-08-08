@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
 
+import PostForm from "@/components/post-form";
 import { getCurrentUser } from "@/lib/session";
-import Modal from "@/components/Modal";
-import ProjectForm from "@/components/ProjectForm";
 
 const CreateProject = async () => {
   const session = await getCurrentUser();
@@ -11,11 +10,8 @@ const CreateProject = async () => {
 
   return (
     <>
-      {/* // <Modal> */}
-      <h3 className="modal-head-text">Create a New Project</h3>
-
-      <ProjectForm type="create" session={session} />
-      {/* // </Modal> */}
+      <h3 className="flex justify-center w-full pt-10 text-2xl  md:text-4xl">Create a New Post</h3>
+      <PostForm type="create" session={session} />
     </>
   );
 };
