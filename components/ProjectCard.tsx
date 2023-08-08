@@ -15,10 +15,10 @@ type Props = {
 
 const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
   return (
-    <div className="flex-col flexCenter rounded-2xl drop-shadow-card">
+    <div className="flex flex-col items-center justify-center rounded-2xl drop-shadow-card">
       <Link
         href={`/project/${id}`}
-        className="relative w-full h-full flexCenter group"
+        className="relative flex items-center justify-center w-full h-full group"
       >
         <Image
           src={image}
@@ -28,14 +28,14 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
           alt="project image"
         />
 
-        <div className="hidden group-hover:flex profile_card-title">
+        <div className="absolute bottom-0 right-0 items-end justify-end hidden w-full gap-2 p-4 text-lg font-semibold text-white group-hover:flex h-1/3 bg-gradient-to-b from-transparent to-black/50 rounded-b-2xl">
           <p className="w-full">{title}</p>
         </div>
       </Link>
 
-      <div className="w-full px-2 mt-3 text-sm font-semibold flexBetween">
+      <div className="flex items-center justify-between w-full px-2 mt-3 text-sm font-semibold">
         <Link href={`/profile/${userId}`}>
-          <div className="gap-2 flexCenter">
+          <div className="flex items-center justify-center gap-2">
             <Image
               src={avatarUrl}
               width={24}
@@ -46,17 +46,6 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
             <p>{name}</p>
           </div>
         </Link>
-
-        <div className="gap-3 flexCenter">
-          {/* <div className="gap-2 flexCenter">
-            <Image src="/hearth.svg" width={13} height={12} alt="heart" />
-            <p className="text-sm">{votes}</p>
-          </div> */}
-          {/* <div className="gap-2 flexCenter">
-            <Image src="/eye.svg" width={12} height={9} alt="eye" />
-            <p className="text-sm">{randomViews}</p>
-          </div> */}
-        </div>
       </div>
     </div>
   );

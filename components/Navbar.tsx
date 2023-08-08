@@ -5,39 +5,39 @@ import { NavLinks } from "@/constant";
 import { getCurrentUser } from "@/lib/session";
 
 import AuthProviders from "./AuthProviders";
-import Button from "./Button";
+import { Poppins } from "next/font/google";
 import ProfileMenu from "./ProfileMenu";
+import { ModeToggle } from "./mode-toggle";
+import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
+
+const font = Poppins({ weight: "600", subsets: ["latin"] });
 
 const Navbar = async () => {
-  const session = await getCurrentUser()
+  const session = await getCurrentUser();
 
   return (
-    <nav className='flexBetween navbar'>
-      <div className='flex-1 flexStart gap-10'>
-        <Link href='/'>
-          <Image
-            src='/logo.svg'
-            width={116}
-            height={43}
-            alt='logo'
-          />
+    <nav className="flex items-center justify-between gap-4 px-8 py-5 border-b border-nav-border">
+      <div className="flex items-center justify-start flex-1 gap-10">
+        <Link href="/">
+          <h1
+            className={cn(
+              "hidden md:block text-xl md:text-3xl font-bold text-primary",
+              font.className
+            )}
+          >
+           Graphy
+          </h1>
         </Link>
-        <ul className='xl:flex hidden text-small gap-7'>
-          {NavLinks.map((link) => (
-            <Link href={link.href} key={link.text}>
-              {link.text}
-            </Link>
-          ))}
-        </ul>
       </div>
 
-      <div className='flexCenter gap-4'>
+      <div className="flex items-center justify-center gap-4">
         {session?.user ? (
           <>
             <ProfileMenu session={session} />
-
+            <ModeToggle />
             <Link href="/create-project">
-              <Button title='Share work' />
+              <Button variant="ghost">Post</Button>
             </Link>
           </>
         ) : (

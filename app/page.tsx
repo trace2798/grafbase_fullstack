@@ -36,10 +36,10 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 
   if (postsToDisplay.length === 0) {
     return (
-      <section className="flex-col flexStart paddings">
+      <section className="flex flex-col items-center justify-start px-5 py-6 lg:px-20">
         <Categories />
 
-        <p className="text-center no-result-text">
+        <p className="w-full px-2 my-10 text-center">
           No projects found, go create some first.
         </p>
       </section>
@@ -47,7 +47,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   }
 
   return (
-    <section className="flex-col mb-16 flexStart paddings">
+    <section className="flex flex-col items-center justify-start px-5 py-6 mb-16 lg:px-20">
       <Categories />
 
       <section className="projects-grid">
