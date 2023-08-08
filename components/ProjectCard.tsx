@@ -14,16 +14,6 @@ type Props = {
 };
 
 const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
-  const [randomLikes, setRandomLikes] = useState(0);
-  const [randomViews, setRandomViews] = useState("");
-
-  useEffect(() => {
-    setRandomLikes(Math.floor(Math.random() * 10000));
-    setRandomViews(
-      String((Math.floor(Math.random() * 10000) / 1000).toFixed(1) + "k")
-    );
-  }, []);
-
   return (
     <div className="flex-col flexCenter rounded-2xl drop-shadow-card">
       <Link
@@ -58,14 +48,14 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
         </Link>
 
         <div className="gap-3 flexCenter">
-          <div className="gap-2 flexCenter">
+          {/* <div className="gap-2 flexCenter">
             <Image src="/hearth.svg" width={13} height={12} alt="heart" />
-            <p className="text-sm">{randomLikes}</p>
-          </div>
-          <div className="gap-2 flexCenter">
+            <p className="text-sm">{votes}</p>
+          </div> */}
+          {/* <div className="gap-2 flexCenter">
             <Image src="/eye.svg" width={12} height={9} alt="eye" />
             <p className="text-sm">{randomViews}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

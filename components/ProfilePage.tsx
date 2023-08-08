@@ -22,7 +22,7 @@ const ProfilePage = ({ user }: Props) => (
         />
         <p className="mt-10 text-4xl font-bold">{user?.name}</p>
         <p className="max-w-lg mt-5 text-3xl font-extrabold md:text-5xl md:mt-10">
-          I’m Software Engineer at JSM 👋
+          {user?.description}
         </p>
 
         <div className="flex flex-wrap w-full gap-5 mt-8">

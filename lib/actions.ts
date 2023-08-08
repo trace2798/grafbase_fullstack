@@ -131,7 +131,7 @@ export const getPostDetails = (id: string) => {
   return makeGraphQLRequest(getPostByIdQuery, { id });
 };
 
-export const createUser = (name: string, email: string, avatarUrl: string) => {
+export const createUser = (name: string, email: string, avatarUrl: string, description: string) => {
   client.setHeader("x-api-key", apiKey);
 
   const variables = {
@@ -139,6 +139,7 @@ export const createUser = (name: string, email: string, avatarUrl: string) => {
       name: name,
       email: email,
       avatarUrl: avatarUrl,
+      description: description,
     },
   };
 
