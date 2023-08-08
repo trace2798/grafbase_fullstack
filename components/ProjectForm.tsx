@@ -87,80 +87,65 @@ const ProjectForm = ({ type, session, project }: Props) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="flexStart form">
-      <div className="flexStart form_image-container">
-        <label htmlFor="poster" className="flexCenter form_image-label">
-          {!form.image && "Choose a poster for your project"}
-        </label>
-        <input
-          id="image"
-          type="file"
-          accept="image/*"
-          required={type === "create" ? true : false}
-          className="form_image-input"
-          onChange={(e) => handleChangeImage(e)}
+    <form onSubmit={handleFormSubmit} className="flex flex-col items-start justify-start w-full max-w-5xl gap-10 pt-12 mx-auto text-lg lg:pt-24">
+    <div className="flex items-start justify-start w-full lg:min-h-[400px] min-h-[200px] relative">
+      <label htmlFor="poster" className="z-10 flex items-center justify-center w-full h-full p-20 text-center text-gray-100 border-2 border-dashed border-gray-50">
+        {!form.image && "Choose a poster for your project"}
+      </label>
+      <input
+        id="image"
+        type="file"
+        accept="image/*"
+        required={type === "create" ? true : false}
+        className="absolute z-30 w-full h-full opacity-0 cursor-pointer"
+        onChange={(e) => handleChangeImage(e)}
+      />
+      {form.image && (
+        <Image
+          src={form?.image}
+          className="z-20 object-contain sm:p-10"
+          alt="image"
+          fill
         />
-        {form.image && (
-          <Image
-            src={form?.image}
-            className="z-20 object-contain sm:p-10"
-            alt="image"
-            fill
-          />
-        )}
-      </div>
-
-      <FormField
-        title="Title"
-        state={form.title}
-        placeholder="Flexibble"
-        setState={(value) => handleStateChange("title", value)}
+      )}
+    </div>
+  
+    <FormField
+      title="Title"
+      state={form.title}
+      placeholder="Flexibble"
+      setState={(value) => handleStateChange("title", value)}
+    />
+  
+    <FormField
+      title="Description"
+      state={form.description}
+      placeholder="Showcase and discover remarkable developer projects."
+      isTextArea
+      setState={(value) => handleStateChange("description", value)}
+    />
+  
+    <CustomMenu
+      title="Category"
+      state={form.category}
+      filters={categoryFilters}
+      setState={(value) => handleStateChange("category", value)}
+    />
+  
+    <div className="flex items-start justify-start w-full">
+      <Button
+        title={
+          submitting
+            ? `${type === "create" ? "Creating" : "Editing"}`
+            : `${type === "create" ? "Create" : "Edit"}`
+        }
+        type="submit"
+        leftIcon={submitting ? "" : "/plus.svg"}
+        submitting={submitting}
       />
-
-      <FormField
-        title="Description"
-        state={form.description}
-        placeholder="Showcase and discover remarkable developer projects."
-        isTextArea
-        setState={(value) => handleStateChange("description", value)}
-      />
-
-      {/* <FormField
-        type="url"
-        title="Website URL"
-        state={form.liveSiteUrl}
-        placeholder="https://jsmastery.pro"
-        setState={(value) => handleStateChange("liveSiteUrl", value)}
-      /> */}
-
-      {/* <FormField
-        type="url"
-        title="GitHub URL"
-        state={form.githubUrl}
-        placeholder="https://github.com/adrianhajdin"
-        setState={(value) => handleStateChange("githubUrl", value)}
-      /> */}
-
-      <CustomMenu
-        title="Category"
-        state={form.category}
-        filters={categoryFilters}
-        setState={(value) => handleStateChange("category", value)}
-      />
-
-      <div className="w-full flexStart">
-        <Button
-          title={
-            submitting
-              ? `${type === "create" ? "Creating" : "Editing"}`
-              : `${type === "create" ? "Create" : "Edit"}`
-          }
-          type="submit"
-          leftIcon={submitting ? "" : "/plus.svg"}
-          submitting={submitting}
-        />
-      </div>
-    </form>
+    </div>
+  </form>
+  
   );
 };
 

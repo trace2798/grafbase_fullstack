@@ -1,3 +1,6 @@
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+
 type Props = {
   type?: string;
   title: string;
@@ -20,14 +23,14 @@ const FormField = ({
       <label className="w-full text-gray-100">{title}</label>
 
       {isTextArea ? (
-        <textarea
+        <Textarea
           placeholder={placeholder}
           value={state}
           className="form_field-input"
           onChange={(e) => setState(e.target.value)}
         />
       ) : (
-        <input
+        <Input
           type={type || "text"}
           placeholder={placeholder}
           required
