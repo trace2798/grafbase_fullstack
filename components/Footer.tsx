@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { footerLinks } from "@/constant";
 
 type ColumnProps = {
   title: string;
@@ -23,7 +21,7 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 
 const Footer = () => (
   <section className="flexStart footer">
-    <div className="flex flex-col w-full gap-12">
+    {/* <div className="flex flex-col w-full gap-12">
       <div className="flex flex-col items-start">
         <Image src="/logo-purple.svg" width={116} height={38} alt="logo" />
 
@@ -40,7 +38,7 @@ const Footer = () => (
         <span className="font-semibold text-black">10,214</span> projects
         submitted
       </p>
-    </div>
+    </div> */}
   </section>
 );
 

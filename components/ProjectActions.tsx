@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { FileSignature, Trash } from "lucide-react";
 import { deletePost, fetchToken } from "@/lib/actions";
 
 type Props = {
@@ -35,9 +35,9 @@ const ProjectActions = ({ projectId }: Props) => {
     <>
       <Link
         href={`/edit-project/${projectId}`}
-        className="flexCenter edit-action_btn"
+        className="flex items-center justify-center edit-action_btn"
       >
-        <Image src="/pencile.svg" width={15} height={15} alt="edit" />
+        <FileSignature className="w-10" />
       </Link>
 
       <button
@@ -48,7 +48,7 @@ const ProjectActions = ({ projectId }: Props) => {
         }`}
         onClick={handleDeleteProject}
       >
-        <Image src="/trash.svg" width={15} height={15} alt="delete" />
+        <Trash className="w-10" />
       </button>
     </>
   );
