@@ -7,10 +7,8 @@ const User = g
     email: g.string().unique(),
     avatarUrl: g.url(),
     description: g.string().length({ min: 2, max: 1000 }).optional(),
-    githubUrl: g.url().optional(),
-    linkedinUrl: g.url().optional(),
-    projects: g
-      .relation(() => Project)
+    posts: g
+      .relation(() => Post)
       .list()
       .optional(),
   })
@@ -19,20 +17,28 @@ const User = g
   });
 
 // @ts-ignore
-const Project = g
-  .model("Project", {
+const Post = g
+  .model("Post", {
     title: g.string().length({ min: 3 }),
-    description: g.string(),
+    description: g.string().optional(),
     image: g.url(),
-    liveSiteUrl: g.url(),
-    githubUrl: g.url(),
     category: g.string().search(),
     createdBy: g.relation(() => User),
+    votes: g
+      .relation(() => vote)
+      .optional()
+      .list()
+      .optional(),
   })
   .auth((rules) => {
     rules.public().read();
     rules.private().create().delete().update();
   });
+
+const vote = g.model("Vote", {
+  user: g.relation(() => User),
+  post: g.relation(() => Post),
+});
 
 const jwt = auth.JWT({
   issuer: "grafbase",
