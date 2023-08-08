@@ -8,13 +8,13 @@ import FormField from "./FormField";
 import Button from "./Button";
 import CustomMenu from "./CustomMenu";
 import { categoryFilters } from "@/constant";
-import { updateProject, createNewProject, fetchToken } from "@/lib/actions";
-import { FormState, ProjectInterface, SessionInterface } from "@/common.types";
+import { updatePost, createNewPost, fetchToken } from "@/lib/actions";
+import { FormState, PostInterface, SessionInterface } from "@/common.types";
 
 type Props = {
   type: string;
   session: SessionInterface;
-  project?: ProjectInterface;
+  project?: PostInterface;
 };
 
 const ProjectForm = ({ type, session, project }: Props) => {
@@ -25,8 +25,6 @@ const ProjectForm = ({ type, session, project }: Props) => {
     title: project?.title || "",
     description: project?.description || "",
     image: project?.image || "",
-    liveSiteUrl: project?.liveSiteUrl || "",
-    githubUrl: project?.githubUrl || "",
     category: project?.category || "",
   });
 
@@ -67,13 +65,13 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
     try {
       if (type === "create") {
-        await createNewProject(form, session?.user?.id, token);
+        await createNewPost(form, session?.user?.id, token);
 
         router.push("/");
       }
 
       if (type === "edit") {
-        await updateProject(form, project?.id as string, token);
+        await updatePost(form, project?.id as string, token);
 
         router.push("/");
       }
@@ -127,21 +125,21 @@ const ProjectForm = ({ type, session, project }: Props) => {
         setState={(value) => handleStateChange("description", value)}
       />
 
-      <FormField
+      {/* <FormField
         type="url"
         title="Website URL"
         state={form.liveSiteUrl}
         placeholder="https://jsmastery.pro"
         setState={(value) => handleStateChange("liveSiteUrl", value)}
-      />
+      /> */}
 
-      <FormField
+      {/* <FormField
         type="url"
         title="GitHub URL"
         state={form.githubUrl}
         placeholder="https://github.com/adrianhajdin"
         setState={(value) => handleStateChange("githubUrl", value)}
-      />
+      /> */}
 
       <CustomMenu
         title="Category"

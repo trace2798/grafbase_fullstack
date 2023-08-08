@@ -1,55 +1,57 @@
-import { ProjectInterface } from "@/common.types";
+import { PostInterface } from "@/common.types";
 import Categories from "@/components/Categories";
 import LoadMore from "@/components/LoadMore";
 import ProjectCard from "@/components/ProjectCard";
-import { fetchAllProjects } from "@/lib/actions";
+import { fetchAllPosts } from "@/lib/actions";
 
 type SearchParams = {
   category?: string | null;
   endcursor?: string | null;
-}
+};
 
 type Props = {
-  searchParams: SearchParams
-}
+  searchParams: SearchParams;
+};
 
-type ProjectSearch = {
-  projectSearch: {
-    edges: { node: ProjectInterface }[];
+type PostSearch = {
+  postSearch: {
+    edges: { node: PostInterface }[];
     pageInfo: {
       hasPreviousPage: boolean;
       hasNextPage: boolean;
       startCursor: string;
       endCursor: string;
     };
-  },
-}
+  };
+};
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 export const revalidate = 0;
 
 const Home = async ({ searchParams: { category, endcursor } }: Props) => {
-  const data = await fetchAllProjects(category, endcursor) as ProjectSearch
+  const data = (await fetchAllPosts(category, endcursor)) as PostSearch;
 
-  const projectsToDisplay = data?.projectSearch?.edges || [];
+  const postsToDisplay = data?.postSearch?.edges || [];
 
-  if (projectsToDisplay.length === 0) {
+  if (postsToDisplay.length === 0) {
     return (
-      <section className="flexStart flex-col paddings">
+      <section className="flex-col flexStart paddings">
         <Categories />
 
-        <p className="no-result-text text-center">No projects found, go create some first.</p>
+        <p className="text-center no-result-text">
+          No projects found, go create some first.
+        </p>
       </section>
-    )
+    );
   }
 
   return (
-    <section className="flexStart flex-col paddings mb-16">
+    <section className="flex-col mb-16 flexStart paddings">
       <Categories />
 
       <section className="projects-grid">
-        {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
+        {postsToDisplay.map(({ node }: { node: PostInterface }) => (
           <ProjectCard
             key={`${node?.id}`}
             id={node?.id}
@@ -62,14 +64,14 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         ))}
       </section>
 
-      <LoadMore 
-        startCursor={data?.projectSearch?.pageInfo?.startCursor} 
-        endCursor={data?.projectSearch?.pageInfo?.endCursor} 
-        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage} 
-        hasNextPage={data?.projectSearch?.pageInfo.hasNextPage}
+      <LoadMore
+        startCursor={data?.postSearch?.pageInfo?.startCursor}
+        endCursor={data?.postSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.postSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.postSearch?.pageInfo.hasNextPage}
       />
     </section>
-  )
+  );
 };
 
 export default Home;

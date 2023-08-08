@@ -3,15 +3,15 @@ import { redirect } from "next/navigation";
 import Modal from "@/components/Modal";
 import ProjectForm from "@/components/ProjectForm";
 import { getCurrentUser } from "@/lib/session";
-import { getProjectDetails } from "@/lib/actions";
-import { ProjectInterface } from "@/common.types";
+import { getPostDetails } from "@/lib/actions";
+import { PostInterface } from "@/common.types";
 
 const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
 
   if (!session?.user) redirect("/")
 
-  const result = await getProjectDetails(id) as { project?: ProjectInterface };
+  const result = await getPostDetails(id) as { project?: PostInterface };
   
   if (!result?.project) return (
     <p className="no-result-text">Failed to fetch project info</p>
