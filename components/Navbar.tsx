@@ -1,15 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { NavLinks } from "@/constant";
 import { getCurrentUser } from "@/lib/session";
 
-import AuthProviders from "./AuthProviders";
-import { Poppins } from "next/font/google";
-import ProfileMenu from "./ProfileMenu";
-import { ModeToggle } from "./mode-toggle";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { Poppins } from "next/font/google";
+import AuthProviders from "./AuthProviders";
+import { ModeToggle } from "./mode-toggle";
+import ProfileDropdownMenu from "./profile-menu";
+import { Button } from "./ui/button";
 
 const font = Poppins({ weight: "600", subsets: ["latin"] });
 
@@ -34,7 +32,8 @@ const Navbar = async () => {
       <div className="flex items-center justify-center gap-4">
         {session?.user ? (
           <>
-            <ProfileMenu session={session} />
+            {/* <ProfileMenu session={session} /> */}
+            <ProfileDropdownMenu session={session} />
             <ModeToggle />
             <Link href="/create-project">
               <Button variant="ghost">Post</Button>

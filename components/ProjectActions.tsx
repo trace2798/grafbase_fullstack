@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { FileSignature, Trash } from "lucide-react";
 import { deletePost, fetchToken } from "@/lib/actions";
+import { FileSignature, Trash } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type Props = {
   projectId: string;
@@ -35,9 +34,9 @@ const ProjectActions = ({ projectId }: Props) => {
     <>
       <Link
         href={`/edit-project/${projectId}`}
-        className="flex items-center justify-center edit-action_btn"
+        className="flex items-center justify-center"
       >
-        <FileSignature className="w-10" />
+        <FileSignature className="w-5 hover:text-blue-600" />
       </Link>
 
       <button
@@ -48,7 +47,7 @@ const ProjectActions = ({ projectId }: Props) => {
         }`}
         onClick={handleDeleteProject}
       >
-        <Trash className="w-10" />
+        <Trash className="w-5 text-red-600 hover:text-red-900" />
       </button>
     </>
   );
