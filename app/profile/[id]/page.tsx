@@ -1,4 +1,4 @@
-import { getUserProjects } from "@/lib/actions";
+import { getUserPosts } from "@/lib/actions";
 import ProfilePage from "@/components/ProfilePage";
 import { UserProfile } from "@/common.types";
 
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const UserProfile = async ({ params }: Props) => {
-  const result = (await getUserProjects(params.id, 100)) as {
+  const result = (await getUserPosts(params.id, 100)) as {
     user: UserProfile;
   };
 

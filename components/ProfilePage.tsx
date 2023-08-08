@@ -1,4 +1,4 @@
-import { ProjectInterface, UserProfile } from "@/common.types";
+import { PostInterface, UserProfile } from "@/common.types";
 import Image from "next/image";
 
 import Link from "next/link";
@@ -38,9 +38,9 @@ const ProfilePage = ({ user }: Props) => (
         </div>
       </div>
 
-      {user?.projects?.edges?.length > 0 ? (
+      {user?.posts?.edges?.length > 0 ? (
         <Image
-          src={user?.projects?.edges[0]?.node?.image}
+          src={user?.posts?.edges[0]?.node?.image}
           alt="project image"
           width={739}
           height={554}
@@ -61,7 +61,7 @@ const ProfilePage = ({ user }: Props) => (
       <p className="w-full text-lg font-semibold text-left">Recent Work</p>
 
       <div className="profile_projects">
-        {user?.projects?.edges?.map(({ node }: { node: ProjectInterface }) => (
+        {user?.posts?.edges?.map(({ node }: { node: PostInterface }) => (
           <ProjectCard
             key={`${node?.id}`}
             id={node?.id}
