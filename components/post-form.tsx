@@ -70,13 +70,11 @@ const PostForm = ({ type, session, project }: Props) => {
     try {
       if (type === "create") {
         await createNewPost(form, session?.user?.id, token);
-
         router.push("/");
       }
 
       if (type === "edit") {
         await updatePost(form, project?.id as string, token);
-
         router.push("/");
       }
     } catch (error) {

@@ -50,7 +50,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
     <section className="flex flex-col items-center justify-start px-5 py-6 mb-16 lg:px-20">
       <Categories />
 
-      <section className="projects-grid">
+      <section className="grid w-3/4 grid-cols-1 gap-5 mt-10 lg:w-1/2 md:grid-cols-2">
         {postsToDisplay.map(({ node }: { node: PostInterface }) => (
           <ProjectCard
             key={`${node?.id}`}
@@ -60,6 +60,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
             name={node?.createdBy.name}
             avatarUrl={node?.createdBy.avatarUrl}
             userId={node?.createdBy.id}
+            description={node?.description}
           />
         ))}
       </section>
