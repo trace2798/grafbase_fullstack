@@ -30,6 +30,13 @@ import {
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { Label } from "./ui/label";
+import { HoverContentComponent } from "./hover-content-component";
 
 type Props = {
   session: SessionInterface;
@@ -37,7 +44,7 @@ type Props = {
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
-  description: z.string().min(2).max(50),
+  description: z.string().min(2),
   image: z.string().min(2),
   category: z.string().min(2).max(50),
 });
@@ -120,70 +127,31 @@ const CreatePost = ({ session }: Props) => {
   };
   const [selectedCategoryType, setSelectedCategoryType] = useState("");
 
-  //   const handleFormSubmit = async (e: FormEvent) => {
-  //     e.preventDefault();
-
-  //     setSubmitting(true);
-
-  //     const { token } = await fetchToken();
-
-  //     try {
-  //       if (type === "create") {
-  //         await createNewPost(form, session?.user?.id, token);
-  //         router.push("/");
-  //       }
-
-  //       if (type === "edit") {
-  //         await updatePost(form, project?.id as string, token);
-  //         router.push("/");
-  //       }
-  //     } catch (error) {
-  //       alert(
-  //         `Failed to ${
-  //           type === "create" ? "create" : "edit"
-  //         } a project. Try again!`
-  //       );
-  //     } finally {
-  //       setSubmitting(false);
-  //     }
-  //   };
-
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col items-start justify-start w-full max-w-5xl gap-10 pt-12 mx-auto text-lg lg:pt-24"
+        className="flex flex-col items-start justify-start w-full gap-10 pt-12 mx-auto text-lg max-w-7xl "
       >
-        {/* <div className="flex items-start justify-start w-full lg:min-h-fit min-h-[200px] relative">
-          <Label
-            htmlFor="poster"
-            className="z-10 flex items-center justify-center w-full h-full p-20 text-center text-gray-100 border-2 border-dashed border-gray-50"
+        <HoverCard openDelay={200}>
+          <HoverCardTrigger asChild>
+            <Label htmlFor="image" className="text-xl text-left w-fit">
+              Image for your post
+            </Label>
+          </HoverCardTrigger>
+          <HoverCardContent
+            align="start"
+            className="w-[260px] text-sm"
+            side="left"
           >
-            {!form.image && "Choose a picture for this post."}
-          </Label>
-          <Input
-            id="image"
-            type="file"
-            accept="image/*"
-            required={type === "create" ? true : false}
-            className="absolute z-30 w-full h-full opacity-0 cursor-pointer"
-            onChange={(e) => handleChangeImage(e)}
-          />
-          {form.image && (
-            <Image
-              src={form?.image}
-              className="z-20 object-contain sm:p-10"
-              alt="image"
-              fill
-            />
-          )}
-        </div> */}
+            <HoverContentComponent type="Client's name." />
+          </HoverCardContent>
+        </HoverCard>
         <FormField
           control={form.control}
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Image</FormLabel>
               <FormControl>
                 <ImageUpload
                   value={field.value ? [field.value] : []}
@@ -196,31 +164,72 @@ const CreatePost = ({ session }: Props) => {
             </FormItem>
           )}
         />
+        <HoverCard openDelay={200}>
+          <HoverCardTrigger asChild>
+            <Label htmlFor="title" className="text-xl text-left w-fit">
+              Title
+            </Label>
+          </HoverCardTrigger>
+          <HoverCardContent
+            align="start"
+            className="w-[260px] text-sm"
+            side="left"
+          >
+            <HoverContentComponent type="Title for the post" />
+          </HoverCardContent>
+        </HoverCard>
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Title of your Post" {...field} />
+                <Input className="w-[80vw] lg:w-[30vw]" placeholder="Title of your Post" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        <HoverCard openDelay={200}>
+          <HoverCardTrigger asChild>
+            <Label htmlFor="description" className="text-xl text-left w-fit">
+              Description
+            </Label>
+          </HoverCardTrigger>
+          <HoverCardContent
+            align="start"
+            className="w-[260px] text-sm"
+            side="left"
+          >
+            <HoverContentComponent type="Description for the post" />
+          </HoverCardContent>
+        </HoverCard>
         <FormField
           control={form.control}
           name="description"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="Description of your post" {...field} />
+                <Textarea className="w-[80vw] lg:w-[40vw]" placeholder="Description of your post" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormLabel>Category</FormLabel>
+        <HoverCard openDelay={200}>
+          <HoverCardTrigger asChild>
+            <Label htmlFor="title" className="text-xl text-left w-fit">
+              Category
+            </Label>
+          </HoverCardTrigger>
+          <HoverCardContent
+            align="start"
+            className="w-[260px] text-sm"
+            side="left"
+          >
+            <HoverContentComponent type="Category your post fit's in." />
+          </HoverCardContent>
+        </HoverCard>
         <FormField
           control={form.control}
           name="category"
@@ -251,7 +260,7 @@ const CreatePost = ({ session }: Props) => {
           )}
         />
 
-        <div className="flex items-start justify-start w-full">
+        <div className="flex items-start justify-start w-full pb-10 md:pb-0">
           <Button type="submit" disabled={submitting}>
             <Plus className="w-4 h-4 mr-2" /> Publish Post
           </Button>
