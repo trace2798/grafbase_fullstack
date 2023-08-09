@@ -40,7 +40,7 @@ const ProjectActions = ({ projectId }: Props) => {
         loading={loading}
       />
       <Link
-        href={`/edit-project/${projectId}`}
+        href={`/edit-post/${projectId}`}
         className="flex items-center justify-center"
       >
         <Button

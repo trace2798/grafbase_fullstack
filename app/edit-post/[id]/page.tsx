@@ -4,7 +4,7 @@ import EditPost from "@/components/edit-post";
 import { getPostDetails } from "@/lib/actions";
 import { getCurrentUser } from "@/lib/session";
 
-const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
+const EditPostPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
 
   if (!session?.user) redirect("/");
@@ -17,11 +17,11 @@ const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <>
       <h3 className="flex justify-center w-full pt-10 text-2xl md:text-4xl">
-        Edit Project
+        Edit Post
       </h3>
       <EditPost session={session} post={result?.post} />
     </>
   );
 };
 
-export default EditProject;
+export default EditPostPage;

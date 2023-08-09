@@ -26,7 +26,7 @@ const PostCard = ({
   return (
     <div className="flex flex-col items-center justify-center mb-10 rounded-2xl drop-shadow-card">
       <Link
-        href={`/project/${id}`}
+        href={`/post/${id}`}
         className="relative flex items-center justify-center w-full h-full group"
       >
         <Image
@@ -34,7 +34,7 @@ const PostCard = ({
           width={414}
           height={314}
           className="object-cover w-full h-full rounded-2xl"
-          alt="project image"
+          alt="post_image"
         />
         <div className="absolute bottom-0 right-0 items-end justify-end hidden w-full gap-2 p-4 text-lg font-semibold text-white group-hover:flex h-1/4 bg-zinc-100/10 backdrop-blur-sm rounded-b-2xl">
           <p className="w-full pt-1 text-indigo-900 line-clamp-2">{description}</p>

@@ -2,8 +2,9 @@ import { PostInterface, UserProfile } from "@/common.types";
 import Image from "next/image";
 
 import Link from "next/link";
-import Button from "./Button";
+
 import PostCard from "./post-card";
+import { Button } from "./ui/button";
 
 type Props = {
   user: UserProfile;
@@ -13,27 +14,24 @@ const ProfilePage = ({ user }: Props) => (
   <section className="flex-col w-full mx-auto flexCenter max-w-10xl paddings">
     <section className="w-full gap-10 flexBetween max-lg:flex-col">
       <div className="flex flex-col items-start w-full">
-        <Image
+        {/* <Image
           src={user?.avatarUrl}
           width={100}
           height={100}
           className="rounded-full"
           alt="user image"
-        />
-        <p className="mt-10 text-4xl font-bold">{user?.name}</p>
-        <p className="max-w-lg mt-5 text-3xl font-extrabold md:text-5xl md:mt-10">
-          {user?.description}
+        /> */}
+        <p className="mt-10 text-2xl font-bold">
+          Hi my name is{" "}
+          <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
+            {user?.name}
+          </span>
         </p>
-
         <div className="flex flex-wrap w-full gap-5 mt-8">
-          <Button
-            title="Follow"
-            leftIcon="/plus-round.svg"
-            bgColor="bg-light-white-400 !w-max"
-            textColor="text-black-100"
-          />
           <Link href={`mailto:${user?.email}`}>
-            <Button title="Hire Me" leftIcon="/email.svg" />
+            <Button variant="secondary" className="mb-10">
+              Mail Me
+            </Button>
           </Link>
         </div>
       </div>
@@ -51,16 +49,15 @@ const ProfilePage = ({ user }: Props) => (
           src="/profile-post.png"
           width={739}
           height={554}
-          alt="project image"
+          alt="post_image"
           className="rounded-xl"
         />
       )}
     </section>
 
-    <section className="flex-col w-full mt-16 flexStart lg:mt-28">
+    <section className="flex flex-col items-center justify-start w-full mt-16 lg:mt-28">
       <p className="w-full text-lg font-semibold text-left">Recent Work</p>
-
-      <div className="profile_projects">
+      <div className="grid grid-cols-1 gap-8 mt-5 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         {user?.posts?.edges?.map(({ node }: { node: PostInterface }) => (
           <PostCard
             key={`${node?.id}`}

@@ -8,7 +8,7 @@ import ProjectActions from "@/components/ProjectActions";
 import RelatedProjects from "@/components/RelatedProjects";
 import { PostInterface } from "@/common.types";
 
-const Project = async ({ params: { id } }: { params: { id: string } }) => {
+const ProjectIdPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
   const result = (await getPostDetails(id)) as { post?: PostInterface };
 
@@ -20,7 +20,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
   const renderLink = () => `/profile/${postDetails?.createdBy?.id}`;
 
   return (
-    // <Modal>
+
     <>
       <section className="flex items-center justify-between w-full pt-10 gap-y-8 max-xs:flex-col">
         <div className="flex flex-col items-center flex-1 w-full gap-5 max-xs:flex-col">
@@ -80,9 +80,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
         userId={postDetails?.createdBy?.id}
         projectId={postDetails?.id}
       />
-      {/* // </Modal> */}
     </>
   );
 };
 
-export default Project;
+export default ProjectIdPage;

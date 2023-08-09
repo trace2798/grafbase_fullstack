@@ -33,7 +33,7 @@ const Navbar = async () => {
             <>
               <ProfileDropdownMenu session={session} />
               <ModeToggle />
-              <Link href="/create-project">
+              <Link href="/create-post">
                 <Button variant="ghost">Post</Button>
               </Link>
             </>
