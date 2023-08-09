@@ -19,7 +19,7 @@ const User = g
 // @ts-ignore
 const Post = g
   .model("Post", {
-    title: g.string().length({ min: 3 }),
+    title: g.string().length({ min: 4 }),
     description: g.string().optional(),
     image: g.url(),
     category: g.string().search(),

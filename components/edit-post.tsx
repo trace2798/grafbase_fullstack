@@ -37,8 +37,8 @@ type Props = {
 };
 
 const formSchema = z.object({
-  title: z.string().min(3).max(50),
-  description: z.string().min(2),
+  title: z.string().min(4).max(50),
+  description: z.string().optional(),
   image: z.string().min(2),
   category: z.string().min(2),
 });
@@ -142,7 +142,7 @@ const EditPost = ({ session, post }: Props) => {
             <HoverContentComponent
               type="string"
               functionality="Title for the post."
-              note="Min: 3, Max: 50"
+              note="Min: 4, Max: 50"
             />
           </HoverCardContent>
         </HoverCard>
@@ -198,7 +198,7 @@ const EditPost = ({ session, post }: Props) => {
         />
         <HoverCard openDelay={200}>
           <HoverCardTrigger asChild>
-            <Label htmlFor="title" className="text-xl text-left w-fit">
+            <Label htmlFor="category" className="text-xl text-left w-fit">
               Category
             </Label>
           </HoverCardTrigger>
