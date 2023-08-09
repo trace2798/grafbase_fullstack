@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
-import Button from "./Button";
+import { Button } from "./ui/button";
 
 type Props = {
   startCursor: string;
@@ -37,18 +36,16 @@ const LoadMore = ({
   };
 
   return (
-    <div className="w-full gap-5 mt-10 flexCenter">
+    <div className="flex items-center justify-center w-full gap-5 mt-10">
       {hasPreviousPage && (
-        <Button
-          title="First Page"
-          handleClick={() => handleNavigation("prev")}
-        />
+        <Button variant="ghost" onClick={() => handleNavigation("prev")}>
+          To the Beginning
+        </Button>
       )}
       {hasNextPage && (
-        <Button
-          title="Next Shots"
-          handleClick={() => handleNavigation("next")}
-        />
+        <Button variant="ghost" onClick={() => handleNavigation("next")}>
+          Next
+        </Button>
       )}
     </div>
   );

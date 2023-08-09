@@ -27,7 +27,6 @@ export interface UserProfile {
   email: string;
   description: string | null;
   avatarUrl: string;
-
   posts: {
     edges: { node: PostInterface }[];
     pageInfo: {

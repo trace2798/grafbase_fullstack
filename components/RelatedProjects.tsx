@@ -5,17 +5,17 @@ import Image from "next/image";
 
 type Props = {
   userId: string;
-  projectId: string;
+  postId: string;
 };
 
-const RelatedProjects = async ({ userId, projectId }: Props) => {
+const RelatedProjects = async ({ userId, postId }: Props) => {
   const result = (await getUserPosts(userId)) as { user?: UserProfile };
 
-  const filteredProjects = result?.user?.posts?.edges?.filter(
-    ({ node }: { node: PostInterface }) => node?.id !== projectId
+  const filteredPosts = result?.user?.posts?.edges?.filter(
+    ({ node }: { node: PostInterface }) => node?.id !== postId
   );
 
-  if (filteredProjects?.length === 0) return null;
+  if (filteredPosts?.length === 0) return null;
 
   return (
     <section className="flex flex-col w-full mt-32">
@@ -30,7 +30,7 @@ const RelatedProjects = async ({ userId, projectId }: Props) => {
       </div>
 
       <div className="grid grid-cols-1 gap-8 my-5 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-        {filteredProjects?.map(({ node }: { node: PostInterface }) => (
+        {filteredPosts?.map(({ node }: { node: PostInterface }) => (
           <div className="flex justify-center items-center flex-col rounded-2xl min-w-[210px] min-h-[197px] drop-shadow-card">
             <Link
               href={`/post/${node?.id}`}

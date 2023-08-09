@@ -74,11 +74,6 @@ export const updatePost = async (
   postId: string,
   token: string
 ) => {
-  function isBase64DataURL(value: string) {
-    const base64Regex = /^data:image\/[a-z]+;base64,/;
-    return base64Regex.test(value);
-  }
-
   let updatedForm = { ...form };
 
   client.setHeader("Authorization", `Bearer ${token}`);

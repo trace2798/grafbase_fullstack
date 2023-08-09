@@ -9,10 +9,10 @@ import { WarningModal } from "./warning-modal";
 import { Button } from "./ui/button";
 
 type Props = {
-  projectId: string;
+  postId: string;
 };
 
-const PostActions = ({ projectId }: Props) => {
+const PostActions = ({ postId }: Props) => {
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ const PostActions = ({ projectId }: Props) => {
     setIsDeleting(true);
     const { token } = await fetchToken();
     try {
-      await deletePost(projectId, token);
+      await deletePost(postId, token);
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -40,7 +40,7 @@ const PostActions = ({ projectId }: Props) => {
         loading={loading}
       />
       <Link
-        href={`/edit-post/${projectId}`}
+        href={`/edit-post/${postId}`}
         className="flex items-center justify-center"
       >
         <Button

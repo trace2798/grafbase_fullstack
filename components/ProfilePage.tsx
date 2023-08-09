@@ -14,13 +14,6 @@ const ProfilePage = ({ user }: Props) => (
   <section className="flex-col w-full mx-auto flexCenter max-w-10xl paddings">
     <section className="w-full gap-10 flexBetween max-lg:flex-col">
       <div className="flex flex-col items-start w-full">
-        {/* <Image
-          src={user?.avatarUrl}
-          width={100}
-          height={100}
-          className="rounded-full"
-          alt="user image"
-        /> */}
         <p className="mt-10 text-2xl font-bold">
           Hi my name is{" "}
           <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
@@ -30,7 +23,7 @@ const ProfilePage = ({ user }: Props) => (
         <div className="flex flex-wrap w-full gap-5 mt-8">
           <Link href={`mailto:${user?.email}`}>
             <Button variant="secondary" className="mb-10">
-              Mail Me
+              Contact Me
             </Button>
           </Link>
         </div>
@@ -38,7 +31,7 @@ const ProfilePage = ({ user }: Props) => (
 
       {user?.posts?.edges?.length > 0 ? (
         <Image
-          src={user?.posts?.edges[0]?.node?.image}
+          src={user?.posts?.edges[4]?.node?.image}
           alt="project image"
           width={739}
           height={554}

@@ -46,7 +46,7 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
             </div>
             {session?.user?.email === postDetails?.createdBy?.email && (
               <div className="flex items-center justify-center w-full gap-2">
-                <PostActions projectId={postDetails?.id} />
+                <PostActions postId={postDetails?.id} />
               </div>
             )}
             <Link
@@ -77,7 +77,7 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
 
       <RelatedProjects
         userId={postDetails?.createdBy?.id}
-        projectId={postDetails?.id}
+        postId={postDetails?.id}
       />
     </>
   );

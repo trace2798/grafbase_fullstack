@@ -7,6 +7,9 @@ type Props = {
     id: string;
   };
 };
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+export const revalidate = 0;
 
 const UserProfile = async ({ params }: Props) => {
   const result = (await getUserPosts(params.id, 100)) as {
