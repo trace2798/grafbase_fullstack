@@ -1,6 +1,5 @@
 import { PostInterface } from "@/common.types";
 import Categories from "@/components/Categories";
-import LoadMore from "@/components/LoadMore";
 import PostCard from "@/components/post-card";
 import { fetchAllPosts } from "@/lib/actions";
 
@@ -63,13 +62,6 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           />
         ))}
       </section>
-
-      <LoadMore
-        startCursor={data?.postSearch?.pageInfo?.startCursor}
-        endCursor={data?.postSearch?.pageInfo?.endCursor}
-        hasPreviousPage={data?.postSearch?.pageInfo?.hasPreviousPage}
-        hasNextPage={data?.postSearch?.pageInfo.hasNextPage}
-      />
     </section>
   );
 };
