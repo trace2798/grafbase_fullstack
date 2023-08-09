@@ -1,45 +1,45 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { SessionInterface } from "@/common.types";
-import { createNewPost, fetchToken } from "@/lib/actions";
+import { PostInterface, SessionInterface } from "@/common.types";
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { fetchToken, updatePost } from "@/lib/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
+import { HoverContentComponent } from "./hover-content-component";
 import ImageUpload from "./image-upload";
 import { Button } from "./ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import { Label } from "./ui/label";
-import { HoverContentComponent } from "./hover-content-component";
 
 type Props = {
   session: SessionInterface;
+  post?: PostInterface;
 };
 
 const formSchema = z.object({
@@ -49,23 +49,17 @@ const formSchema = z.object({
   category: z.string().min(2).max(50),
 });
 
-const CreatePost = ({ session }: Props) => {
+const EditPost = ({ session, post }: Props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  //   const [form, setForm] = useState<FormState>({
-  //     title: project?.title || "",
-  //     description: project?.description || "",
-  //     image: project?.image || "",
-  //     category: project?.category || "",
-  //   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-      category: "",
+      title: post?.title,
+      description: post?.description,
+      image: post?.image,
+      category: post?.category,
     },
   });
   const { toast } = useToast();
@@ -75,13 +69,11 @@ const CreatePost = ({ session }: Props) => {
     try {
       const { token } = await fetchToken();
       setLoading(true);
-      await createNewPost(values, session?.user?.id, token);
+      await updatePost(values, post?.id as string, token);
       router.push("/");
-      // console.log(values, "VALUES VALUES");
-      form.reset();
       toast({
-        title: "Post Submitted",
-        description: "Post Successfully submitted",
+        title: "Updated",
+        description: "Post Successfully updated",
       });
       router.refresh();
     } catch (error) {
@@ -97,7 +89,10 @@ const CreatePost = ({ session }: Props) => {
     setSelectedCategoryType(value);
     form.setValue("category", value); // Update the format property in the form data
   };
-  const [selectedCategoryType, setSelectedCategoryType] = useState("");
+  const [selectedCategoryType, setSelectedCategoryType] = useState(
+    post?.category
+  );
+  const isLoading = form.formState.isSubmitting;
 
   return (
     <Form {...form}>
@@ -156,7 +151,11 @@ const CreatePost = ({ session }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input className="w-[80vw] lg:w-[30vw]" placeholder="Title of your Post" {...field} />
+                <Input
+                  className="w-[80vw] lg:w-[30vw]"
+                  placeholder="Title of your Post"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -182,7 +181,11 @@ const CreatePost = ({ session }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea className="w-[80vw] lg:w-[40vw]" placeholder="Description of your post" {...field} />
+                <Textarea
+                  className="w-[80vw] lg:w-[40vw]"
+                  placeholder="Description of your post"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -234,7 +237,7 @@ const CreatePost = ({ session }: Props) => {
 
         <div className="flex items-start justify-start w-full pb-10 md:pb-0">
           <Button type="submit" disabled={submitting}>
-            <Plus className="w-4 h-4 mr-2" /> Publish Post
+            <Plus className="w-4 h-4 mr-2" /> Publish Updated Post
           </Button>
         </div>
       </form>
@@ -242,4 +245,4 @@ const CreatePost = ({ session }: Props) => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

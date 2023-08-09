@@ -5,6 +5,7 @@ import ProjectForm from "@/components/post-form";
 import { getCurrentUser } from "@/lib/session";
 import { getPostDetails } from "@/lib/actions";
 import { PostInterface } from "@/common.types";
+import EditPost from "@/components/edit-post";
 
 const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -19,7 +20,8 @@ const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <Modal>
       <h3 className="modal-head-text">Edit Project</h3>
-      <ProjectForm type="edit" session={session} project={result?.post} />
+      {/* <ProjectForm type="edit" session={session} project={result?.post} /> */}
+      <EditPost session={session} post={result?.post} />
     </Modal>
   );
 };
