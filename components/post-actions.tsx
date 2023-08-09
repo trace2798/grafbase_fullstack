@@ -12,7 +12,7 @@ type Props = {
   projectId: string;
 };
 
-const ProjectActions = ({ projectId }: Props) => {
+const PostActions = ({ projectId }: Props) => {
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -65,4 +65,4 @@ const ProjectActions = ({ projectId }: Props) => {
   );
 };
 
-export default ProjectActions;
+export default PostActions;

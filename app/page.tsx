@@ -40,7 +40,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         <Categories />
 
         <p className="w-full px-2 my-10 text-center">
-          No projects found, go create some first.
+          No posts found, go create some first.
         </p>
       </section>
     );

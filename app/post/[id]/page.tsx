@@ -4,11 +4,11 @@ import Link from "next/link";
 import { getCurrentUser } from "@/lib/session";
 import { getPostDetails } from "@/lib/actions";
 
-import ProjectActions from "@/components/ProjectActions";
+import PostActions from "@/components/post-actions";
 import RelatedProjects from "@/components/RelatedProjects";
 import { PostInterface } from "@/common.types";
 
-const ProjectIdPage = async ({ params: { id } }: { params: { id: string } }) => {
+const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
   const result = (await getPostDetails(id)) as { post?: PostInterface };
 
@@ -20,7 +20,6 @@ const ProjectIdPage = async ({ params: { id } }: { params: { id: string } }) => 
   const renderLink = () => `/profile/${postDetails?.createdBy?.id}`;
 
   return (
-
     <>
       <section className="flex items-center justify-between w-full pt-10 gap-y-8 max-xs:flex-col">
         <div className="flex flex-col items-center flex-1 w-full gap-5 max-xs:flex-col">
@@ -47,7 +46,7 @@ const ProjectIdPage = async ({ params: { id } }: { params: { id: string } }) => 
             </div>
             {session?.user?.email === postDetails?.createdBy?.email && (
               <div className="flex items-center justify-center w-full gap-2">
-                <ProjectActions projectId={postDetails?.id} />
+                <PostActions projectId={postDetails?.id} />
               </div>
             )}
             <Link
@@ -84,4 +83,4 @@ const ProjectIdPage = async ({ params: { id } }: { params: { id: string } }) => 
   );
 };
 
-export default ProjectIdPage;
+export default PostIdPage;
