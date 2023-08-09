@@ -5,6 +5,8 @@ import { FileSignature, Trash } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { WarningModal } from "./warning-modal";
+import { Button } from "./ui/button";
 
 type Props = {
   projectId: string;
@@ -12,16 +14,15 @@ type Props = {
 
 const ProjectActions = ({ projectId }: Props) => {
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleDeleteProject = async () => {
     setIsDeleting(true);
-
     const { token } = await fetchToken();
-
     try {
       await deletePost(projectId, token);
-
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -32,23 +33,34 @@ const ProjectActions = ({ projectId }: Props) => {
 
   return (
     <>
+      <WarningModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={handleDeleteProject}
+        loading={loading}
+      />
       <Link
         href={`/edit-project/${projectId}`}
         className="flex items-center justify-center"
       >
-        <FileSignature className="w-5 hover:text-blue-600" />
+        <Button
+          disabled={loading}
+          variant="outline"
+          size="sm"
+          onClick={() => setOpen(true)}
+        >
+          <FileSignature className="w-5 hover:text-blue-600" />
+        </Button>
       </Link>
 
-      <button
-        type="button"
-        disabled={isDeleting}
-        className={`flexCenter delete-action_btn ${
-          isDeleting ? "bg-gray" : "bg-primary-purple"
-        }`}
-        onClick={handleDeleteProject}
+      <Button
+        disabled={loading}
+        variant="destructive"
+        size="sm"
+        onClick={() => setOpen(true)}
       >
-        <Trash className="w-5 text-red-600 hover:text-red-900" />
-      </button>
+        <Trash className="w-4 h-4" />
+      </Button>
     </>
   );
 };

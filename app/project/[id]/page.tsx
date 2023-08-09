@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { getCurrentUser } from "@/lib/session";
 import { getPostDetails } from "@/lib/actions";
-import Modal from "@/components/Modal";
+
 import ProjectActions from "@/components/ProjectActions";
 import RelatedProjects from "@/components/RelatedProjects";
 import { PostInterface } from "@/common.types";
@@ -74,26 +74,6 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
         <p className="max-w-5xl text-xl font-normal">
           {postDetails?.description}
         </p>
-
-        <div className="flex flex-wrap gap-5 mt-5">
-          {/* <Link
-        href={postDetails?.githubUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center gap-2 text-sm font-medium text-primary-purple"
-      >
-        🖥 <span className="underline">Github</span>
-      </Link> */}
-          <Image src="/dot.svg" width={4} height={4} alt="dot" />
-          {/* <Link
-        href={postDetails?.liveSiteUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center gap-2 text-sm font-medium text-primary-purple"
-      >
-        🚀 <span className="underline">Live Site</span>
-      </Link> */}
-        </div>
       </section>
 
       <RelatedProjects
