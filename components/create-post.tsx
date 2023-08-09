@@ -53,12 +53,6 @@ const CreatePost = ({ session }: Props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  //   const [form, setForm] = useState<FormState>({
-  //     title: project?.title || "",
-  //     description: project?.description || "",
-  //     image: project?.image || "",
-  //     category: project?.category || "",
-  //   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -116,7 +110,11 @@ const CreatePost = ({ session }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Client's name." />
+            <HoverContentComponent
+              type="string"
+              functionality="Image associated with the post"
+              note="Using cloudinary"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -147,7 +145,11 @@ const CreatePost = ({ session }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Title for the post" />
+            <HoverContentComponent
+              type="string"
+              functionality="Title for the post."
+              note="Min: 2, Max: 50"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -156,7 +158,11 @@ const CreatePost = ({ session }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input className="w-[80vw] lg:w-[30vw]" placeholder="Title of your Post" {...field} />
+                <Input
+                  className="w-[80vw] lg:w-[30vw]"
+                  placeholder="Title of your Post"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -173,7 +179,11 @@ const CreatePost = ({ session }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Description for the post" />
+            <HoverContentComponent
+              type="string"
+              functionality="Description for the post"
+              note="Required"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -182,7 +192,11 @@ const CreatePost = ({ session }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea className="w-[80vw] lg:w-[40vw]" placeholder="Description of your post" {...field} />
+                <Textarea
+                  className="w-[80vw] lg:w-[40vw]"
+                  placeholder="Description of your post"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -199,7 +213,11 @@ const CreatePost = ({ session }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Category your post fit's in." />
+            <HoverContentComponent
+              type="string"
+              functionality="Category your post fit's in"
+              note="Required"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField

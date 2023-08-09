@@ -2,9 +2,9 @@
 
 import { PostInterface, SessionInterface } from "@/common.types";
 import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { fetchToken, updatePost } from "@/lib/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,23 +16,17 @@ import * as z from "zod";
 import { HoverContentComponent } from "./hover-content-component";
 import ImageUpload from "./image-upload";
 import { Button } from "./ui/button";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage
-} from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
 } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
@@ -46,7 +40,7 @@ const formSchema = z.object({
   title: z.string().min(2).max(50),
   description: z.string().min(2),
   image: z.string().min(2),
-  category: z.string().min(2).max(50),
+  category: z.string().min(2),
 });
 
 const EditPost = ({ session, post }: Props) => {
@@ -92,7 +86,6 @@ const EditPost = ({ session, post }: Props) => {
   const [selectedCategoryType, setSelectedCategoryType] = useState(
     post?.category
   );
-  const isLoading = form.formState.isSubmitting;
 
   return (
     <Form {...form}>
@@ -111,7 +104,11 @@ const EditPost = ({ session, post }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Client's name." />
+            <HoverContentComponent
+              type="string"
+              functionality="Image associated with the post"
+              note="Using cloudinary"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -142,7 +139,11 @@ const EditPost = ({ session, post }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Title for the post" />
+            <HoverContentComponent
+              type="string"
+              functionality="Title for the post."
+              note="Min: 2, Max: 50"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -172,7 +173,11 @@ const EditPost = ({ session, post }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Description for the post" />
+            <HoverContentComponent
+              type="string"
+              functionality="Description for the post"
+              note="Required"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -202,7 +207,11 @@ const EditPost = ({ session, post }: Props) => {
             className="w-[260px] text-sm"
             side="left"
           >
-            <HoverContentComponent type="Category your post fit's in." />
+            <HoverContentComponent
+              type="string"
+              functionality="Category your post fit's in"
+              note="Required"
+            />
           </HoverCardContent>
         </HoverCard>
         <FormField
@@ -235,7 +244,7 @@ const EditPost = ({ session, post }: Props) => {
           )}
         />
 
-        <div className="flex items-start justify-start w-full pb-10 md:pb-0">
+        <div className="flex items-start justify-start w-full pb-10">
           <Button type="submit" disabled={submitting}>
             <Plus className="w-4 h-4 mr-2" /> Publish Updated Post
           </Button>

@@ -1,11 +1,10 @@
 import { redirect } from "next/navigation";
 
-import Modal from "@/components/Modal";
-import ProjectForm from "@/components/post-form";
-import { getCurrentUser } from "@/lib/session";
-import { getPostDetails } from "@/lib/actions";
 import { PostInterface } from "@/common.types";
+import Modal from "@/components/Modal";
 import EditPost from "@/components/edit-post";
+import { getPostDetails } from "@/lib/actions";
+import { getCurrentUser } from "@/lib/session";
 
 const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -19,8 +18,8 @@ const EditProject = async ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <Modal>
-      <h3 className="modal-head-text">Edit Project</h3>
-      {/* <ProjectForm type="edit" session={session} project={result?.post} /> */}
+      <h3 className="flex justify-center w-full pt-10 text-2xl md:text-4xl">Edit Project</h3>
+   
       <EditPost session={session} post={result?.post} />
     </Modal>
   );
