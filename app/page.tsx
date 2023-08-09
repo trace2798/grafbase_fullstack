@@ -4,8 +4,8 @@ import PostCard from "@/components/post-card";
 import { fetchAllPosts } from "@/lib/actions";
 
 type SearchParams = {
-  category?: string | null;
-  endcursor?: string | null;
+  category?: string | "";
+  endcursor?: string | "";
 };
 
 type Props = {
