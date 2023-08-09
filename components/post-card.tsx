@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 type Props = {
@@ -15,7 +14,7 @@ type Props = {
   userId: string;
 };
 
-const ProjectCard = ({
+const PostCard = ({
   id,
   image,
   title,
@@ -59,4 +58,4 @@ const ProjectCard = ({
   );
 };
 
-export default ProjectCard;
+export default PostCard;

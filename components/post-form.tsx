@@ -3,9 +3,7 @@
 import Image from "next/image";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import FormField from "./FormField";
-// import Button from "./Button";
 import CustomMenu from "./CustomMenu";
 import { categoryFilters } from "@/constant";
 import { updatePost, createNewPost, fetchToken } from "@/lib/actions";

@@ -2,6 +2,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "Graphy",
@@ -18,7 +19,10 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <main>{children}</main>
+          <main>
+            <div className="mx-[10vw]">{children}</div>
+          </main>
+          <Toaster />
           <Footer />
         </ThemeProvider>
       </body>

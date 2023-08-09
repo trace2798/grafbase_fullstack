@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import Button from "./Button";
-import ProjectCard from "./ProjectCard";
+import PostCard from "./post-card";
 
 type Props = {
   user: UserProfile;
@@ -62,7 +62,7 @@ const ProfilePage = ({ user }: Props) => (
 
       <div className="profile_projects">
         {user?.posts?.edges?.map(({ node }: { node: PostInterface }) => (
-          <ProjectCard
+          <PostCard
             key={`${node?.id}`}
             id={node?.id}
             image={node?.image}

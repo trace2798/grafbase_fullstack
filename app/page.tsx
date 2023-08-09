@@ -1,7 +1,7 @@
 import { PostInterface } from "@/common.types";
 import Categories from "@/components/Categories";
 import LoadMore from "@/components/LoadMore";
-import ProjectCard from "@/components/ProjectCard";
+import PostCard from "@/components/post-card";
 import { fetchAllPosts } from "@/lib/actions";
 
 type SearchParams = {
@@ -49,10 +49,9 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   return (
     <section className="flex flex-col items-center justify-start px-5 py-6 mb-16 lg:px-20">
       <Categories />
-
-      <section className="grid w-3/4 grid-cols-1 gap-5 mt-10 lg:w-1/2 md:grid-cols-2">
+      <section className="grid w-3/4 grid-cols-1 gap-5 mt-10 lg:w-2/3 md:grid-cols-2">
         {postsToDisplay.map(({ node }: { node: PostInterface }) => (
-          <ProjectCard
+          <PostCard
             key={`${node?.id}`}
             id={node?.id}
             image={node?.image}
