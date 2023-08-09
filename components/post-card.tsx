@@ -36,14 +36,13 @@ const PostCard = ({
           className="object-cover w-full h-full rounded-2xl"
           alt="project image"
         />
-
-        <div className="absolute bottom-0 right-0 items-end justify-end hidden w-full gap-2 p-4 text-lg font-semibold text-white group-hover:flex h-1/3 bg-gradient-to-b from-transparent to-black/50 rounded-b-2xl">
-          <p className="w-full text-indigo-900 line-clamp-2">{description}</p>
+        <div className="absolute bottom-0 right-0 items-end justify-end hidden w-full gap-2 p-4 text-lg font-semibold text-white group-hover:flex h-1/4 bg-zinc-100/10 backdrop-blur-sm rounded-b-2xl">
+          <p className="w-full pt-1 text-indigo-900 line-clamp-2">{description}</p>
         </div>
       </Link>
 
       <div className="flex flex-col items-center justify-between w-full px-2 mt-3 text-sm font-semibold">
-        <h1 className="text-xl md:text-3xl">{title}</h1>
+        <h1 className="text-lg md:text-xl xl:text-2xl">{title}</h1>
         <Link href={`/profile/${userId}`}>
           <div className="flex items-center justify-center gap-2">
             <Avatar className="w-5 h-5">

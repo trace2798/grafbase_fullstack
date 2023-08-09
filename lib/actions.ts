@@ -13,7 +13,6 @@ import {
 import { PostForm } from "@/common.types";
 
 const isProduction = process.env.NODE_ENV === "production";
-
 const apiUrl = isProduction
   ? process.env.NEXT_PUBLIC_GRAFBASE_API_URL || ""
   : "http://127.0.0.1:4000/graphql";
@@ -35,19 +34,19 @@ export const fetchToken = async () => {
   }
 };
 
-export const uploadImage = async (imagePath: string) => {
-  try {
-    const response = await fetch(`${serverUrl}/api/upload`, {
-      method: "POST",
-      body: JSON.stringify({
-        path: imagePath,
-      }),
-    });
-    return response.json();
-  } catch (err) {
-    throw err;
-  }
-};
+// export const uploadImage = async (imagePath: string) => {
+//   try {
+//     const response = await fetch(`${serverUrl}/api/upload`, {
+//       method: "POST",
+//       body: JSON.stringify({
+//         path: imagePath,
+//       }),
+//     });
+//     return response.json();
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 
 const makeGraphQLRequest = async (query: string, variables = {}) => {
   try {
@@ -66,29 +65,78 @@ export const fetchAllPosts = (
   return makeGraphQLRequest(postsQuery, { category, endcursor });
 };
 
+// export const createNewPost = async (
+//   form: PostForm,
+//   creatorId: string,
+//   token: string
+// ) => {
+//   const imageUrl = await uploadImage(form.image);
+
+//   if (imageUrl.url) {
+//     client.setHeader("Authorization", `Bearer ${token}`);
+
+//     const variables = {
+//       input: {
+//         ...form,
+//         image: imageUrl.url,
+//         createdBy: {
+//           link: creatorId,
+//         },
+//       },
+//     };
+
+//     return makeGraphQLRequest(createPostMutation, variables);
+//   }
+// };
 export const createNewPost = async (
   form: PostForm,
   creatorId: string,
   token: string
 ) => {
-  const imageUrl = await uploadImage(form.image);
-
-  if (imageUrl.url) {
-    client.setHeader("Authorization", `Bearer ${token}`);
-
-    const variables = {
-      input: {
-        ...form,
-        image: imageUrl.url,
-        createdBy: {
-          link: creatorId,
-        },
+  client.setHeader("Authorization", `Bearer ${token}`);
+  const variables = {
+    input: {
+      ...form,
+      createdBy: {
+        link: creatorId,
       },
-    };
-
-    return makeGraphQLRequest(createPostMutation, variables);
-  }
+    },
+  };
+  console.log(variables);
+  return makeGraphQLRequest(createPostMutation, variables);
 };
+
+// export const updatePost = async (
+//   form: PostForm,
+//   postId: string,
+//   token: string
+// ) => {
+//   function isBase64DataURL(value: string) {
+//     const base64Regex = /^data:image\/[a-z]+;base64,/;
+//     return base64Regex.test(value);
+//   }
+
+//   let updatedForm = { ...form };
+
+//   const isUploadingNewImage = isBase64DataURL(form.image);
+
+//   if (isUploadingNewImage) {
+//     const imageUrl = await uploadImage(form.image);
+
+//     if (imageUrl.url) {
+//       updatedForm = { ...updatedForm, image: imageUrl.url };
+//     }
+//   }
+
+//   client.setHeader("Authorization", `Bearer ${token}`);
+
+//   const variables = {
+//     id: postId,
+//     input: updatedForm,
+//   };
+
+//   return makeGraphQLRequest(updatePostMutation, variables);
+// };
 
 export const updatePost = async (
   form: PostForm,
@@ -101,16 +149,6 @@ export const updatePost = async (
   }
 
   let updatedForm = { ...form };
-
-  const isUploadingNewImage = isBase64DataURL(form.image);
-
-  if (isUploadingNewImage) {
-    const imageUrl = await uploadImage(form.image);
-
-    if (imageUrl.url) {
-      updatedForm = { ...updatedForm, image: imageUrl.url };
-    }
-  }
 
   client.setHeader("Authorization", `Bearer ${token}`);
 
@@ -132,7 +170,12 @@ export const getPostDetails = (id: string) => {
   return makeGraphQLRequest(getPostByIdQuery, { id });
 };
 
-export const createUser = (name: string, email: string, avatarUrl: string, description: string) => {
+export const createUser = (
+  name: string,
+  email: string,
+  avatarUrl: string,
+  description: string
+) => {
   client.setHeader("x-api-key", apiKey);
 
   const variables = {

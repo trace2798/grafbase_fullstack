@@ -17,7 +17,6 @@ const ProfileDropdownMenu = ({ session }: { session: SessionInterface }) => {
       <DropdownMenuTrigger asChild>
         <Avatar>
           {session?.user?.image && <AvatarImage src={session.user.image} />}
-
           <AvatarFallback>T</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

@@ -38,7 +38,7 @@ type Props = {
 
 const formSchema = z.object({
   title: z.string().min(4).max(50),
-  description: z.string().optional(),
+  description: z.string().min(2),
   image: z.string().min(2),
   category: z.string().min(2),
 });
@@ -60,6 +60,7 @@ const EditPost = ({ session, post }: Props) => {
   type FormData = z.infer<typeof formSchema>;
 
   const onSubmit: SubmitHandler<FormData> = async (values) => {
+    
     try {
       const { token } = await fetchToken();
       setLoading(true);
