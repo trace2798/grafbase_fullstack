@@ -1,11 +1,12 @@
 import { PostInterface } from "@/common.types";
 import Categories from "@/components/Categories";
+import LoadMore from "@/components/load-more";
 import PostCard from "@/components/post-card";
 import { fetchAllPosts } from "@/lib/actions";
 
 type SearchParams = {
-  category?: string | "";
-  endcursor?: string | "";
+  category?: string | null;
+  endcursor?: string | null;
 };
 
 type Props = {
@@ -28,9 +29,10 @@ export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 export const revalidate = 0;
 
-const Home = async ({ searchParams: { category, endcursor } }: Props) => {
-  const data = (await fetchAllPosts(category, endcursor)) as PostSearch;
-
+const Home = async () => {
+  const data = (await fetchAllPosts()) as PostSearch;
+  console.log(data?.postSearch?.pageInfo?.startCursor);
+  console.log(data?.postSearch?.pageInfo.hasNextPage);
   const postsToDisplay = data?.postSearch?.edges || [];
 
   if (postsToDisplay.length === 0) {
@@ -62,6 +64,12 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           />
         ))}
       </section>
+      <LoadMore
+        startCursor={data?.postSearch?.pageInfo?.startCursor}
+        endCursor={data?.postSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.postSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.postSearch?.pageInfo.hasNextPage}
+      />
     </section>
   );
 };
