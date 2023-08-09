@@ -8,7 +8,6 @@ interface HoverContentComponentProps {
 
 export const HoverContentComponent: React.FC<HoverContentComponentProps> = ({
   type,
-
   functionality,
   note,
 }) => {

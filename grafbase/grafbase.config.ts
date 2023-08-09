@@ -24,21 +24,11 @@ const Post = g
     image: g.url(),
     category: g.string().search(),
     createdBy: g.relation(() => User),
-    votes: g
-      .relation(() => vote)
-      .optional()
-      .list()
-      .optional(),
   })
   .auth((rules) => {
     rules.public().read();
     rules.private().create().delete().update();
   });
-
-const vote = g.model("Vote", {
-  user: g.relation(() => User),
-  post: g.relation(() => Post),
-});
 
 const jwt = auth.JWT({
   issuer: "grafbase",

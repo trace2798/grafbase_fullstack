@@ -43,7 +43,7 @@ type Props = {
 };
 
 const formSchema = z.object({
-  title: z.string().min(2).max(50),
+  title: z.string().min(3).max(50),
   description: z.string().min(2),
   image: z.string().min(2),
   category: z.string().min(2).max(50),
@@ -148,7 +148,7 @@ const CreatePost = ({ session }: Props) => {
             <HoverContentComponent
               type="string"
               functionality="Title for the post."
-              note="Min: 2, Max: 50"
+              note="Min: 3, Max: 50"
             />
           </HoverCardContent>
         </HoverCard>
