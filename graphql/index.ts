@@ -54,7 +54,7 @@ export const createUserMutation = `
 
 export const postsQuery = `
   query getPosts($category: String, $endcursor: String) {
-    postSearch(first: 2, after: $endcursor, filter: {category: {eq: $category}}) {
+    postSearch(first: 6, after: $endcursor, filter: {category: {eq: $category}}) {
       pageInfo {
         hasNextPage
         hasPreviousPage

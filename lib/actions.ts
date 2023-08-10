@@ -14,11 +14,11 @@ import { PostForm } from "@/common.types";
 
 const isProduction = process.env.NODE_ENV === "production";
 const apiUrl = isProduction
-  ? process.env.NEXT_PUBLIC_GRAFBASE_API_URL || ""
+  ? process.env.NEXT_PUBLIC_GRAFBASE_API_URL!
   : "http://127.0.0.1:4000/graphql";
 const apiKey = isProduction
-  ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY || ""
-  : "letmein";
+  ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY!
+  : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTE0ODUxNTcsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFIN0E1WUU2QkdTVkdTQlJEUlkwQUFGWVYiLCJqdGkiOiIwMUg3QTVZRTkwSlQ0ME4xRFhWM1hQMUhWQyIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.HDa36FQMMXy_mH3OIYgtM4PU-0De9p34fFFgv2sLtQs";
 const serverUrl = isProduction
   ? process.env.NEXT_PUBLIC_SERVER_URL
   : "http://localhost:3000";
