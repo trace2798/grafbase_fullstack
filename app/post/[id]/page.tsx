@@ -51,23 +51,19 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
                   width={20}
                   height={20}
                   alt="profile"
-                  className="rounded-full"
+                  className="rounded-full bg-neutral-200"
                 />
               </Link>
               <Link href={renderLink()}>{postDetails?.createdBy?.name}</Link>
-              {/* <Image src="/dot.svg" width={4} height={4} alt="dot" /> */}
             </div>
             {session?.user?.email === postDetails?.createdBy?.email && (
               <div className="flex items-center justify-center w-full gap-2">
                 <PostActions postId={postDetails?.id} />
               </div>
             )}
-            <Link
-              href={`/?category=${postDetails.category}`}
-              className="flex justify-center w-full font-semibold text-primary-purple"
-            >
+            <h1 className="flex justify-center w-full font-semibold text-primary-purple">
               {postDetails?.category}
-            </Link>
+            </h1>
           </div>
         </div>
       </section>

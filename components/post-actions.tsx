@@ -47,7 +47,6 @@ const PostActions = ({ postId }: Props) => {
           disabled={loading}
           variant="outline"
           size="sm"
-          onClick={() => setOpen(true)}
         >
           <FileSignature className="w-5 hover:text-blue-600" />
         </Button>
