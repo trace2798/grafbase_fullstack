@@ -16,7 +16,7 @@ const Navbar = async () => {
     <>
       <nav className="flex items-center justify-between gap-4 px-8 py-5 border-b border-nav-border bg-primary-foreground">
         <div className="flex items-center justify-start flex-1 gap-10">
-          <Link href="/?category=Tech">
+          <Link href="/">
             <h1
               className={cn(
                 "flex text-xl md:text-3xl font-bold text-primary",
@@ -38,7 +38,10 @@ const Navbar = async () => {
               </Link>
             </>
           ) : (
-            <AuthProviders />
+            <>
+              <ModeToggle />
+              <AuthProviders />
+            </>
           )}
         </div>
       </nav>
