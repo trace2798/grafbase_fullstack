@@ -42,13 +42,18 @@ const makeGraphQLRequest = async (query: string, variables = {}) => {
   }
 };
 
-export const fetchAllPosts = (
-  category?: string | null,
-  endcursor?: string | null
-) => {
+// export const fetchAllPosts = (
+//   category?: string | null,
+//   endcursor?: string | null
+// ) => {
+//   client.setHeader("x-api-key", apiKey);
+
+//   return makeGraphQLRequest(postsQuery, { category, endcursor });
+// };
+export const fetchAllPosts = () => {
   client.setHeader("x-api-key", apiKey);
 
-  return makeGraphQLRequest(postsQuery, { category, endcursor });
+  return makeGraphQLRequest(postsQuery);
 };
 
 export const createNewPost = async (

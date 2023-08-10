@@ -31,8 +31,8 @@ export const revalidate = 0;
 
 const Home = async () => {
   const data = (await fetchAllPosts()) as PostSearch;
-  console.log(data?.postSearch?.pageInfo?.startCursor);
-  console.log(data?.postSearch?.pageInfo.hasNextPage);
+  // console.log(data?.postSearch?.pageInfo?.startCursor);
+  // console.log(data?.postSearch?.pageInfo.hasNextPage);
   const postsToDisplay = data?.postSearch?.edges || [];
 
   if (postsToDisplay.length === 0) {
@@ -49,7 +49,7 @@ const Home = async () => {
 
   return (
     <section className="flex flex-col items-center justify-start px-5 py-6 mb-16 lg:px-20">
-      <Categories />
+      {/* <Categories /> */}
       <section className="grid w-3/4 grid-cols-1 gap-5 mt-10 lg:w-2/3 md:grid-cols-2">
         {postsToDisplay.map(({ node }: { node: PostInterface }) => (
           <PostCard
@@ -64,12 +64,12 @@ const Home = async () => {
           />
         ))}
       </section>
-      <LoadMore
+      {/* <LoadMore
         startCursor={data?.postSearch?.pageInfo?.startCursor}
         endCursor={data?.postSearch?.pageInfo?.endCursor}
         hasPreviousPage={data?.postSearch?.pageInfo?.hasPreviousPage}
         hasNextPage={data?.postSearch?.pageInfo.hasNextPage}
-      />
+      /> */}
     </section>
   );
 };
