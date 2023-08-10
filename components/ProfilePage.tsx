@@ -29,6 +29,9 @@ const ProfilePage = ({ user }: Props) => {
                 Contact Me
               </Button>
             </Link>
+            <Button variant="outline" className="mb-10">
+              Number of Post: {user?.posts.edges.length}
+            </Button>
           </div>
         </div>
 
