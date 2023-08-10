@@ -37,24 +37,22 @@ const ProfilePage = ({ user }: Props) => {
 
         {user?.posts?.edges?.length > 0 ? (
           <>
-            <Link href={`/post/${randomIndex}`}>
-              <div className="flex lg:w-[50%] lg:h-[50%">
-                <div>
-                  <Image
-                    src={user?.posts?.edges[randomIndex]?.node?.image}
-                    alt="project image"
-                    width={739}
-                    height={554}
-                    className="object-contain rounded-xl"
-                  />
-                </div>
-                <div>
-                  <h1 className="ml-10 font-bold w-fit">
-                    {user?.posts?.edges[randomIndex]?.node?.title}
-                  </h1>
-                </div>
+            <div className="flex lg:w-[50%] lg:h-[50%">
+              <div>
+                <Image
+                  src={user?.posts?.edges[randomIndex]?.node?.image}
+                  alt="project image"
+                  width={739}
+                  height={554}
+                  className="object-contain rounded-xl"
+                />
               </div>
-            </Link>
+              <div>
+                <h1 className="ml-10 font-bold w-fit">
+                  {user?.posts?.edges[randomIndex]?.node?.title}
+                </h1>
+              </div>
+            </div>
           </>
         ) : (
           <Image

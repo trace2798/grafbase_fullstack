@@ -13,7 +13,20 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
   const result = (await getPostDetails(id)) as { post?: PostInterface };
 
   if (!result?.post)
-    return <p className="no-result-text">Failed to fetch project info</p>;
+    return (
+      <div className="flex flex-col items-center justify-center w-full min-h-[80vh]">
+        <Image
+          src="/not-found.jpg"
+          width={500}
+          height={500}
+          alt="not-found-image"
+          className="rounded-xl"
+        />
+        <p className="mt-10 text-xl font-semibold">
+          Sorry the post you are searching for could not be found.
+        </p>
+      </div>
+    );
 
   const postDetails = result?.post;
 
