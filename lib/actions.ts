@@ -20,7 +20,7 @@ const apiKey = isProduction
   ? process.env.NEXT_PUBLIC_GRAFBASE_API_KEY!
   : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTE0ODUxNTcsImlzcyI6ImdyYWZiYXNlIiwiYXVkIjoiMDFIN0E1WUU2QkdTVkdTQlJEUlkwQUFGWVYiLCJqdGkiOiIwMUg3QTVZRTkwSlQ0ME4xRFhWM1hQMUhWQyIsImVudiI6InByb2R1Y3Rpb24iLCJwdXJwb3NlIjoicHJvamVjdC1hcGkta2V5In0.HDa36FQMMXy_mH3OIYgtM4PU-0De9p34fFFgv2sLtQs";
 const serverUrl = isProduction
-  ? "https://grafbase-postit-testing.vercel.app"
+  ? process.env.NEXT_PUBLIC_SERVER_URL
   : "http://localhost:3000";
 
 const client = new GraphQLClient(apiUrl);
