@@ -44,7 +44,7 @@ const ProfilePage = ({ user }: Props) => {
                   alt="project image"
                   width={739}
                   height={554}
-                  className="object-contain rounded-xl"
+                  className="object-contain rounded-xl bg-sky-100"
                 />
               </div>
               <div>

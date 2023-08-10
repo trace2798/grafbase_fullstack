@@ -40,7 +40,7 @@ const RelatedProjects = async ({ userId, postId }: Props) => {
                 src={node?.image}
                 width={414}
                 height={314}
-                className="object-cover w-full h-full rounded-2xl"
+                className="object-cover w-full h-full rounded-2xl bg-sky-100"
                 alt="post_image"
               />
 
