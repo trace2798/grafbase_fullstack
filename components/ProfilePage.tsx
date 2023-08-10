@@ -11,8 +11,8 @@ type Props = {
 };
 
 const ProfilePage = ({ user }: Props) => {
-  const length = user?.posts?.edges?.length
-  const  randomIndex = Math.floor(Math.random() * length);
+  const length = user?.posts?.edges?.length;
+  const randomIndex = Math.floor(Math.random() * length);
   return (
     <section className="flex-col w-full mx-auto flexCenter max-w-10xl paddings">
       <section className="w-full gap-10 flexBetween max-lg:flex-col">
@@ -33,13 +33,26 @@ const ProfilePage = ({ user }: Props) => {
         </div>
 
         {user?.posts?.edges?.length > 0 ? (
-          <Image
-            src={user?.posts?.edges[randomIndex]?.node?.image}
-            alt="project image"
-            width={739}
-            height={554}
-            className="object-contain rounded-xl"
-          />
+          <>
+            <Link href={`/post/${randomIndex}`}>
+              <div className="flex lg:w-[50%] lg:h-[50%">
+                <div>
+                  <Image
+                    src={user?.posts?.edges[randomIndex]?.node?.image}
+                    alt="project image"
+                    width={739}
+                    height={554}
+                    className="object-contain rounded-xl"
+                  />
+                </div>
+                <div>
+                  <h1 className="ml-10 font-bold w-fit">
+                    {user?.posts?.edges[randomIndex]?.node?.title}
+                  </h1>
+                </div>
+              </div>
+            </Link>
+          </>
         ) : (
           <Image
             src="/profile-post.png"
