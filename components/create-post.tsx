@@ -66,13 +66,11 @@ const CreatePost = ({ session }: Props) => {
   type FormData = z.infer<typeof formSchema>;
 
   const onSubmit: SubmitHandler<FormData> = async (values) => {
-    console.log(values, "CREATE POST")
     try {
       const { token } = await fetchToken();
       setLoading(true);
       await createNewPost(values, session?.user?.id, token);
       router.push("/");
-      // console.log(values, "VALUES VALUES");
       form.reset();
       toast({
         title: "Post Submitted",
@@ -251,7 +249,7 @@ const CreatePost = ({ session }: Props) => {
           )}
         />
 
-        <div className="flex items-start justify-start w-full pb-10 md:pb-0">
+        <div className="flex items-start justify-start w-full pb-10 md:pb-0 mb-10">
           <Button type="submit" disabled={submitting}>
             <Plus className="w-4 h-4 mr-2" /> Publish Post
           </Button>
