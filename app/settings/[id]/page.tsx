@@ -1,9 +1,8 @@
-import { UserProfile } from "@/common.types";
+import { UserForm } from "@/common.types";
 import CardWithForm from "@/components/settings-form";
 import { getUser } from "@/lib/actions";
 import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
-import { FC } from "react";
 
 const userSettingsPage = async ({
   params: { id },
@@ -14,11 +13,11 @@ const userSettingsPage = async ({
 
   if (!session?.user) redirect("/");
 
-  const user = (await getUser(id)) as { user?: UserProfile };
+  const user = (await getUser(id)) as { user?: UserForm };
 
   return (
     <>
-      <div className="flex items-center justify-center md:min-h-[80vh]">
+      <div className="flex items-center justify-center min-h-[80vh]">
         <CardWithForm session={session} user={user?.user} />
       </div>
     </>

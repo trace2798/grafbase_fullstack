@@ -57,8 +57,6 @@ mutation UpdateUser($id: ID!, $input: UserUpdateInput!) {
 	userUpdate(by: { id: $id }, input: $input) {
     user {
       name
-      email
-      avatarUrl
       description
       id
     }

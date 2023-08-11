@@ -22,10 +22,10 @@ const ProfilePage = ({ user }: Props) => {
             <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
               {user?.name}
             </span>
-            <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
-              {user?.description}
-            </span>
           </p>
+          <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
+           Description: {user?.description}
+          </span>
           <div className="flex flex-wrap w-full gap-5 mt-8">
             <Link href={`mailto:${user?.email}`}>
               <Button variant="secondary" className="mb-10">
@@ -35,6 +35,11 @@ const ProfilePage = ({ user }: Props) => {
             <Button variant="outline" className="mb-10">
               Number of Post: {user?.posts.edges.length}
             </Button>
+            <Link href={`/settings/${user?.id}`}>
+              <Button variant="outline" className="mb-10">
+                Update
+              </Button>
+            </Link>
           </div>
         </div>
 

@@ -7,6 +7,7 @@ export type FormState = {
   category: string;
 };
 
+
 export interface PostInterface {
   title: string;
   description: string;
@@ -25,7 +26,7 @@ export interface UserProfile {
   id: string;
   name: string;
   email: string;
-  description: string | null;
+  description: string;
   avatarUrl: string;
   posts: {
     edges: { node: PostInterface }[];
@@ -58,5 +59,4 @@ export interface PostForm {
 export interface UserForm {
   name: string;
   description: string;
-  avatarUrl: string;
 }

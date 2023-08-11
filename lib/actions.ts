@@ -81,14 +81,14 @@ export const updatePost = async (
   token: string
 ) => {
   let updatedForm = { ...form };
-
+  console.log(updatedForm, "UPDATED FORM API");
   client.setHeader("Authorization", `Bearer ${token}`);
 
   const variables = {
     id: postId,
     input: updatedForm,
   };
-
+  console.log(variables, "UPDATED FORM API Variables");
   return makeGraphQLRequest(updatePostMutation, variables);
 };
 
@@ -127,15 +127,15 @@ export const updateUser = async (
   userId: string,
   token: string
 ) => {
-  let updatedForm = { ...form };
-
+  let updatedUser = { ...form };
+  console.log(updatedUser, "API UPDATE USER");
   client.setHeader("Authorization", `Bearer ${token}`);
 
   const variables = {
     id: userId,
-    input: updatedForm,
+    input: updatedUser,
   };
-
+  console.log(variables, "UPDATED USER VARIABLES");
   return makeGraphQLRequest(updateUserMutation, variables);
 };
 
