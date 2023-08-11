@@ -28,6 +28,11 @@ const ProfileDropdownMenu = ({ session }: { session: SessionInterface }) => {
             Profile
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={`/settings/${session?.user?.id}`} className="text-sm">
+            Settings
+          </Link>
+        </DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signOut()}>Sign out</DropdownMenuItem>

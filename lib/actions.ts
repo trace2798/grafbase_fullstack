@@ -9,8 +9,9 @@ import {
   getPostsOfUserQuery,
   getUserQuery,
   postsQuery,
+  updateUserMutation,
 } from "@/graphql";
-import { PostForm } from "@/common.types";
+import { PostForm, UserForm } from "@/common.types";
 
 const isProduction = process.env.NODE_ENV === "production";
 const apiUrl = isProduction
@@ -119,6 +120,23 @@ export const createUser = (
   };
 
   return makeGraphQLRequest(createUserMutation, variables);
+};
+
+export const updateUser = async (
+  form: UserForm,
+  userId: string,
+  token: string
+) => {
+  let updatedForm = { ...form };
+
+  client.setHeader("Authorization", `Bearer ${token}`);
+
+  const variables = {
+    id: userId,
+    input: updatedForm,
+  };
+
+  return makeGraphQLRequest(updateUserMutation, variables);
 };
 
 export const getUserPosts = (id: string, last?: number) => {

@@ -52,6 +52,20 @@ export const createUserMutation = `
 	}
 `;
 
+export const updateUserMutation = `
+mutation UpdateUser($id: ID!, $input: UserUpdateInput!) {
+	userUpdate(by: { id: $id }, input: $input) {
+    user {
+      name
+      email
+      avatarUrl
+      description
+      id
+    }
+  }
+}
+`;
+
 export const postsQuery = `
   query getPosts {
     postSearch(first: 10) {

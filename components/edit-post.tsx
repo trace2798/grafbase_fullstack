@@ -9,7 +9,7 @@ import {
 import { fetchToken, updatePost } from "@/lib/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -58,9 +58,9 @@ const EditPost = ({ session, post }: Props) => {
   });
   const { toast } = useToast();
   type FormData = z.infer<typeof formSchema>;
+  if (!session?.user) redirect("/");
 
   const onSubmit: SubmitHandler<FormData> = async (values) => {
-    
     try {
       const { token } = await fetchToken();
       setLoading(true);

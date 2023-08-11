@@ -22,6 +22,9 @@ const ProfilePage = ({ user }: Props) => {
             <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
               {user?.name}
             </span>
+            <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
+              {user?.description}
+            </span>
           </p>
           <div className="flex flex-wrap w-full gap-5 mt-8">
             <Link href={`mailto:${user?.email}`}>

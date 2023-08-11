@@ -44,6 +44,7 @@ export interface SessionInterface extends Session {
     name: string;
     email: string;
     avatarUrl: string;
+    description: string;
   };
 }
 
@@ -52,4 +53,10 @@ export interface PostForm {
   description: string;
   image: string;
   category: string;
+}
+
+export interface UserForm {
+  name: string;
+  description: string;
+  avatarUrl: string;
 }
