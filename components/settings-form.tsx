@@ -66,7 +66,7 @@ const CardWithForm = ({ session, user }: Props) => {
       console.log(error);
       toast({
         title: "Failed to update user",
-        description: `${error}`,
+        description: "Sorry an error occurred while updating info",
         variant: "destructive",
       });
     }
@@ -117,7 +117,10 @@ const CardWithForm = ({ session, user }: Props) => {
                 />
               </div>
             </div>
-
+            <div className="flex flex-col space-y-1.5 mt-3">
+              <Label>Email</Label>
+              <Input placeholder={session.user.email} disabled />
+            </div>
             <Button type="submit" disabled={submitting} className="mt-5">
               Update
             </Button>

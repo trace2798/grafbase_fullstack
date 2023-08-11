@@ -5,12 +5,14 @@ import Link from "next/link";
 
 import PostCard from "./post-card";
 import { Button } from "./ui/button";
+import { getCurrentUser } from "@/lib/session";
 
 type Props = {
   user: UserProfile;
 };
 
-const ProfilePage = ({ user }: Props) => {
+const ProfilePage = async ({ user }: Props) => {
+  const session = await getCurrentUser();
   console.log(user, "user info");
   const length = user?.posts?.edges?.length;
   const randomIndex = Math.floor(Math.random() * length);
@@ -36,11 +38,13 @@ const ProfilePage = ({ user }: Props) => {
             <Button variant="outline" className="mb-10">
               Number of Post: {user?.posts.edges.length}
             </Button>
-            <Link href={`/settings/${user?.id}`}>
-              <Button variant="outline" className="mb-10">
-                Update
-              </Button>
-            </Link>
+            {session?.user?.id === user.id && (
+              <Link href={`/settings/${user?.id}`}>
+                <Button variant="outline" className="mb-10">
+                  Update
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 
