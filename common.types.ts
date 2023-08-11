@@ -7,7 +7,6 @@ export type FormState = {
   category: string;
 };
 
-
 export interface PostInterface {
   title: string;
   description: string;
@@ -57,6 +56,7 @@ export interface PostForm {
 }
 
 export interface UserForm {
-  name: string | undefined;
-  description: string | undefined;
+  name: string;
+  description: string;
+  avatarUrl: string;
 }

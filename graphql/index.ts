@@ -58,6 +58,7 @@ mutation UpdateUser($id: ID!, $input: UserUpdateInput!) {
     user {
       name
       description
+      avatarUrl
       id
     }
   }

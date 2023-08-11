@@ -22,6 +22,7 @@ import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { useToast } from "./ui/use-toast";
 import { Textarea } from "./ui/textarea";
+import ImageUpload from "./image-upload";
 
 type Props = {
   session: SessionInterface;
@@ -31,6 +32,7 @@ type Props = {
 const formSchema = z.object({
   name: z.string().min(4).max(50),
   description: z.string(),
+  avatarUrl: z.string(),
 });
 
 const CardWithForm = ({ session, user }: Props) => {
@@ -45,6 +47,7 @@ const CardWithForm = ({ session, user }: Props) => {
     defaultValues: {
       name: session.user?.name,
       description: session.user?.description ?? "",
+      avatarUrl: session.user.avatarUrl,
     },
   });
 
@@ -109,6 +112,26 @@ const CardWithForm = ({ session, user }: Props) => {
                         <Textarea
                           placeholder={session.user?.description}
                           {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="name">Your Avatar</Label>
+                <FormField
+                  control={form.control}
+                  name="avatarUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <ImageUpload
+                          value={field.value ? [field.value] : []}
+                          disabled={loading}
+                          onChange={(url) => field.onChange(url)}
+                          onRemove={() => field.onChange("")}
                         />
                       </FormControl>
                       <FormMessage />
