@@ -17,7 +17,7 @@ const ProfileDropdownMenu = ({ session }: { session: SessionInterface }) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="w-8 h-8">
-          {session?.user?.image && <AvatarImage src={session.user.image} />}
+          {session?.user?.avatarUrl && <AvatarImage src={session.user.avatarUrl} />}
           <AvatarFallback>T</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -39,8 +39,9 @@ const ProfileDropdownMenu = ({ session }: { session: SessionInterface }) => {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signOut()} className="group">
-        <LogOut className="w-5 h-5 mr-3 text-zinc-200 dark:text-zinc-600 group-hover:text-primary" /> Sign out
-          </DropdownMenuItem>
+          <LogOut className="w-5 h-5 mr-3 text-zinc-200 dark:text-zinc-600 group-hover:text-primary" />{" "}
+          Sign out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
