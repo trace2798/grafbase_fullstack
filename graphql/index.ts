@@ -65,6 +65,14 @@ mutation UpdateUser($id: ID!, $input: UserUpdateInput!) {
 }
 `;
 
+export const deleteUserMutation = `
+mutation DeleteUser($id: ID!) {
+  userDelete(by: { id: $id }) {
+    deletedId
+  }
+}
+`;
+
 export const postsQuery = `
   query getPosts {
     postSearch(first: 10) {

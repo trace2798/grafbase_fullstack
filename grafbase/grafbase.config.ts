@@ -14,7 +14,7 @@ const User = g
   })
   .auth((rules) => {
     rules.public().read();
-    rules.private().update();
+    rules.private().update().delete();
   });
 
 // @ts-ignore

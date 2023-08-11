@@ -10,6 +10,7 @@ import {
   getUserQuery,
   postsQuery,
   updateUserMutation,
+  deleteUserMutation,
 } from "@/graphql";
 import { PostForm, UserForm } from "@/common.types";
 
@@ -137,6 +138,11 @@ export const updateUser = async (
   };
   // console.log(variables, "UPDATED USER VARIABLES");
   return makeGraphQLRequest(updateUserMutation, variables);
+};
+
+export const deleteUser = (id: string, token: string) => {
+  client.setHeader("Authorization", `Bearer ${token}`);
+  return makeGraphQLRequest(deleteUserMutation, { id });
 };
 
 export const getUserPosts = (id: string, last?: number) => {

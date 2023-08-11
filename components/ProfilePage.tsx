@@ -69,7 +69,7 @@ const ProfilePage = async ({ user }: Props) => {
           </>
         ) : (
           <Image
-            src="/profile-post.png"
+            src="/not-found.jpg"
             width={739}
             height={554}
             alt="post_image"
