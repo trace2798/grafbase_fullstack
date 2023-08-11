@@ -39,11 +39,12 @@ const CardWithForm = ({ session, user }: Props) => {
   const [submitting, setSubmitting] = React.useState<boolean>(false);
   const { toast } = useToast();
   const userId = session.user?.id;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: user?.name,
-      description: user?.description ?? "",
+      name: session.user?.name,
+      description: session.user?.description ?? "",
     },
   });
 

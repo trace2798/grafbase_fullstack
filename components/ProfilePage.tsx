@@ -11,6 +11,7 @@ type Props = {
 };
 
 const ProfilePage = ({ user }: Props) => {
+  console.log(user, "user info");
   const length = user?.posts?.edges?.length;
   const randomIndex = Math.floor(Math.random() * length);
   return (
@@ -23,9 +24,9 @@ const ProfilePage = ({ user }: Props) => {
               {user?.name}
             </span>
           </p>
-          <span className="text-4xl font-extrabold dark:text-slate-400 text-slate-500">
-           Description: {user?.description}
-          </span>
+          <p className="mt-5 text-lg font-extrabold md:text-xl lg:text-4xl lg:w-3/4 text-primary">
+            <span>{user.description}</span>
+          </p>
           <div className="flex flex-wrap w-full gap-5 mt-8">
             <Link href={`mailto:${user?.email}`}>
               <Button variant="secondary" className="mb-10">

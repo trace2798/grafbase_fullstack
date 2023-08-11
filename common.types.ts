@@ -57,6 +57,6 @@ export interface PostForm {
 }
 
 export interface UserForm {
-  name: string;
-  description: string;
+  name: string | undefined;
+  description: string | undefined;
 }

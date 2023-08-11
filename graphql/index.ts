@@ -123,6 +123,7 @@ export const getPostsOfUserQuery = `
       name
       email
       avatarUrl
+      description
       posts(last: $last) {
         edges {
           node {
