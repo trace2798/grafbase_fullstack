@@ -1,1 +1,1 @@
-export const categoryFilters = ["Tech", "Life"];
+export const categoryFilters = ["Tech"];

@@ -236,7 +236,7 @@ const CreatePost = ({ session }: Props) => {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Select a Coaching Plan</SelectLabel>
-                      {["Tech", "Life"].map((type, index) => (
+                      {["Tech"].map((type, index) => (
                         <SelectItem key={index} value={type}>
                           {type}
                         </SelectItem>
@@ -249,7 +249,7 @@ const CreatePost = ({ session }: Props) => {
           )}
         />
 
-        <div className="flex items-start justify-start w-full pb-10 md:pb-0 mb-10">
+        <div className="flex items-start justify-start w-full pb-10 mb-10 md:pb-0">
           <Button type="submit" disabled={submitting}>
             <Plus className="w-4 h-4 mr-2" /> Publish Post
           </Button>

@@ -232,7 +232,7 @@ const EditPost = ({ session, post }: Props) => {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Select a Coaching Plan</SelectLabel>
-                      {["Tech", "Life"].map((type, index) => (
+                      {["Tech"].map((type, index) => (
                         <SelectItem key={index} value={type}>
                           {type}
                         </SelectItem>
