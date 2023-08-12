@@ -24,7 +24,7 @@ const Banner = () => {
       <div className="flex">
         <div className="flex items-center justify-center px-3 py-1 mx-5 mt-5 text-sm font-medium rounded-lg w-fit bg-muted">
           <a
-            href="https://github.com/trace2798/grafbase_postit"
+            href="https://github.com/trace2798/grafbase_fullstack"
             target="_blank"
             className="hover:text-blue-500"
           >
