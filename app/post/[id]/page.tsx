@@ -71,7 +71,7 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
       <section className="flex justify-center mt-14">
         <Image
           src={`${postDetails?.image}`}
-          className="object-cover rounded-2xl"
+          className="object-cover bg-blue-100 rounded-2xl"
           width={500}
           height={500}
           alt="poster"
