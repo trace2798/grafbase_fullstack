@@ -75,7 +75,7 @@ mutation DeleteUser($id: ID!) {
 
 export const postsQuery = `
   query getPosts {
-    postSearch(first: 10) {
+    postSearch(first: 100) {
       edges {
         node {
           title
