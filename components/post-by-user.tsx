@@ -8,7 +8,7 @@ type Props = {
   postId: string;
 };
 
-const RelatedProjects = async ({ userId, postId }: Props) => {
+const RelatedPosts = async ({ userId, postId }: Props) => {
   const result = (await getUserPosts(userId)) as { user?: UserProfile };
 
   const filteredPosts = result?.user?.posts?.edges?.filter(
@@ -55,4 +55,4 @@ const RelatedProjects = async ({ userId, postId }: Props) => {
   );
 };
 
-export default RelatedProjects;
+export default RelatedPosts;

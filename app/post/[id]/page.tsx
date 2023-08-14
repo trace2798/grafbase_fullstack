@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 import { getPostDetails } from "@/lib/actions";
 
 import PostActions from "@/components/post-actions";
-import RelatedProjects from "@/components/RelatedProjects";
+import RelatedPosts from "@/components/post-by-user";
 import { PostInterface } from "@/common.types";
 
 const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
@@ -84,7 +84,7 @@ const PostIdPage = async ({ params: { id } }: { params: { id: string } }) => {
         </p>
       </section>
 
-      <RelatedProjects
+      <RelatedPosts
         userId={postDetails?.createdBy?.id}
         postId={postDetails?.id}
       />

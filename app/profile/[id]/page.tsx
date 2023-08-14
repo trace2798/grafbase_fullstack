@@ -1,5 +1,5 @@
 import { getUserPosts } from "@/lib/actions";
-import ProfilePage from "@/components/ProfilePage";
+import ProfilePage from "@/components/profile-page";
 import { UserProfile } from "@/common.types";
 import Image from "next/image";
 

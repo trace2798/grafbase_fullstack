@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getCurrentUser } from "@/lib/session";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
-import AuthProviders from "./AuthProviders";
+import AuthProviders from "./auth-providers";
 import { ModeToggle } from "./mode-toggle";
 import ProfileDropdownMenu from "./profile-menu";
 import { Button } from "./ui/button";

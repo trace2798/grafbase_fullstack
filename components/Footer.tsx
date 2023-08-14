@@ -5,10 +5,14 @@ const Footer = () => (
   <>
     <Separator />
     <section className="flex items-center justify-center py-5">
-      MIT License. Illustration from{" "}
-      <Link href="https://absurd.design/chapter/intro" target="_blank" className="hover:text-blue-500">
+      Proudly Open Source. Illustration from &nbsp;
+      <Link
+        href="https://absurd.design/chapter/intro"
+        target="_blank"
+        className="underline hover:text-blue-500 text-neutral-400"
+      >
         {" "}
-        &nbsp;Absurd Design
+        absurd.design
       </Link>
     </section>
   </>
