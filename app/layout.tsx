@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 
 
 export const metadata = {
-  title: "Graphy - Share your Thoughts.",
+  title: "Graphy - Post your Thoughts.",
   description: "Made possible because of Grafbase.",
   keywords: ["Next.js", "Grafbase"],
   openGraph: {
