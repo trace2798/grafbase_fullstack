@@ -1,9 +1,9 @@
-import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
+import "./globals.css";
 
 
 export const metadata = {

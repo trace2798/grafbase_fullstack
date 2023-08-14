@@ -47,7 +47,7 @@ const PostCard = ({
         <Link href={`/profile/${userId}`}>
           <div className="flex items-center justify-center gap-2">
             <Avatar className="w-5 h-5">
-              <AvatarImage src={avatarUrl} />
+              <AvatarImage src={avatarUrl} alt="profile_image" />
               <AvatarFallback>DP</AvatarFallback>
             </Avatar>
             <p>{name}</p>
