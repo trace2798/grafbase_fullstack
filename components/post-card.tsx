@@ -23,7 +23,7 @@ const PostCard = ({
   userId,
 }: Props) => {
   return (
-    <div className="flex flex-col items-center justify-center mb-10 rounded-2xl drop-shadow-card">
+    <div className="flex flex-col items-center justify-center mb-10 border dark:border-none rounded-2xl drop-shadow-card">
       <Link
         href={`/post/${id}`}
         className="relative flex items-center justify-center w-full h-full group"
