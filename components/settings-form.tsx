@@ -70,7 +70,7 @@ const CardWithForm = ({ session, user }: Props) => {
       router.refresh();
     } catch (error) {
       console.error(error);
-      // console.log(error);
+
       toast({
         title: "Failed to update user",
         description: "Sorry an error occurred while updating info",
@@ -93,7 +93,6 @@ const CardWithForm = ({ session, user }: Props) => {
       });
     } catch (error) {
       console.error(error);
-      console.log(error);
       toast({
         title: "Failed to delete user",
         description: `${error}`,

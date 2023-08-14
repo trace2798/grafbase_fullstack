@@ -13,7 +13,7 @@ type Props = {
 
 const ProfilePage = async ({ user }: Props) => {
   const session = await getCurrentUser();
-  // console.log(user, "user info");
+
   const length = user?.posts?.edges?.length;
   const randomIndex = Math.floor(Math.random() * length);
   return (

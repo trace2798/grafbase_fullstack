@@ -72,7 +72,6 @@ export const createNewPost = async (
       },
     },
   };
-  // console.log(variables);
   return makeGraphQLRequest(createPostMutation, variables);
 };
 
@@ -82,14 +81,13 @@ export const updatePost = async (
   token: string
 ) => {
   let updatedForm = { ...form };
-  // console.log(updatedForm, "UPDATED FORM API");
+
   client.setHeader("Authorization", `Bearer ${token}`);
 
   const variables = {
     id: postId,
     input: updatedForm,
   };
-  // console.log(variables, "UPDATED FORM API Variables");
   return makeGraphQLRequest(updatePostMutation, variables);
 };
 
@@ -129,14 +127,12 @@ export const updateUser = async (
   token: string
 ) => {
   let updatedUser = { ...form };
-  // console.log(updatedUser, "API UPDATE USER");
   client.setHeader("Authorization", `Bearer ${token}`);
 
   const variables = {
     id: userId,
     input: updatedUser,
   };
-  // console.log(variables, "UPDATED USER VARIABLES");
   return makeGraphQLRequest(updateUserMutation, variables);
 };
 

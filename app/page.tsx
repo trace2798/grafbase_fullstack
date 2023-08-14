@@ -16,12 +16,6 @@ type Props = {
 type PostSearch = {
   postSearch: {
     edges: { node: PostInterface }[];
-    pageInfo: {
-      hasPreviousPage: boolean;
-      hasNextPage: boolean;
-      startCursor: string;
-      endCursor: string;
-    };
   };
 };
 
