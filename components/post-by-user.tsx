@@ -15,7 +15,18 @@ const RelatedPosts = async ({ userId, postId }: Props) => {
     ({ node }: { node: PostInterface }) => node?.id !== postId
   );
 
-  if (filteredPosts?.length === 0) return null;
+  if (filteredPosts?.length === 0)
+    return (
+      <>
+        <section className="flex flex-col w-full mt-32">
+          <div className="flex items-center justify-between">
+            <p className="text-base font-bold">This is the only post by <span className="dark:text-slate-400 text-slate-500">{result?.user?.name}</span></p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 my-5 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2"></div>
+        </section>
+      </>
+    );
 
   return (
     <section className="flex flex-col w-full mt-32">
